@@ -1,0 +1,15 @@
+gfx.canvas.accelerated.cache-size
+gfx.content.skia-font-cache-size
+media.memory_cache_max_size
+media.cache_readahead_limit
+media.cache_resume_threshold
+image.mem.decode_bytes_at_a_time
+
+network.http.max-connections
+network.http.max-persistent-connections-per-server
+network.http.max-urgent-start-excessive-connections-per-host
+
+network.dnsCacheExpiration
+network.ssl_tokens_cache_capacity
+
+browser.urlbar.update2.engineAliasRefresh
