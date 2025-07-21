@@ -1,0 +1,80 @@
+name: Sync and Merge Firefox Configs
+
+on:
+  # 1. 允许你从 GitHub 仓库的 Actions 页面手动触发此工作流
+  workflow_dispatch:
+
+  # 2. 设置定时任务，每天 UTC 时间 08:00 运行一次 (北京时间下午 4点)
+  # 你可以根据 https://crontab.guru/ 网站的说明修改这个时间
+  schedule:
+    - cron: '0 11 * * *'
+
+jobs:
+  sync-and-merge:
+    runs-on: ubuntu-latest
+    permissions:
+      # 授予工作流向你的仓库写入内容的权限
+      contents: write
+
+    steps:
+      # 第 1 步: 检出你自己的仓库，这样我们才能在里面工作和提交
+      - name: Checkout self
+        uses: actions/checkout@v4
+
+      # 第 2 步: 同步 gwfox 的 chrome 目录
+      - name: Sync chrome directory from gwfox
+        run: |
+          echo "Cloning gwfox repository sparsely for 'chrome' directory..."
+          # 创建一个临时目录用于克隆
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/akkva/gwfox.git ./tmp_gwfox
+          cd ./tmp_gwfox
+          # 设置只拉取 chrome 目录
+          git sparse-checkout set chrome
+          cd ..
+          
+          echo "Replacing local chrome directory with the new one..."
+          # 移除旧的 chrome 目录（如果存在）
+          rm -rf ./chrome
+          # 将拉取到的新 chrome 目录移动到仓库根目录
+          mv ./tmp_gwfox/chrome ./chrome
+          # 清理临时文件
+          rm -rf ./tmp_gwfox
+
+
+      # 第 3 步: 拉取、合并和处理 user.js 文件
+      - name: Process user.js files
+        run: |
+          echo "Fetching user.js files..."
+          # 使用 curl 下载两个源 user.js 文件
+          curl -sL "https://raw.githubusercontent.com/akkva/gwfox/main/user.js" -o ./gwfox_user.js
+          curl -sL "https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js" -o ./betterfox_user.js
+
+          echo "Merging, stripping comments, and de-duplicating..."
+          # 合并两个文件。Betterfox 在后，它的设置将覆盖 gwfox 的重复设置
+          cat ./gwfox_user.js ./betterfox_user.js > ./merged_user.js
+
+          # 核心处理步骤：
+          # 1. `grep '^user_pref'` - 只提取以 'user_pref' 开头的行，有效移除了所有注释和空行。
+          # 2. `tac` - 将文件内容反转（最后一行变第一行）。
+          # 3. `awk -F '["()]' '!seen[$3]++'` - awk 去重魔法。
+          #    - -F '["()]'  使用 "、(、) 作为分隔符。
+          #    - 这样 `user_pref("preference.name", value)` 中的 "preference.name" 就成了第3个字段 ($3)。
+          #    - `!seen[$3]++` 是一个经典模式，它会为每个唯一的键（preference.name）只保留第一条遇到的行。
+          #    - 因为我们已经用 `tac` 反转了文件，所以 "第一条遇到的行" 实际上是原始文件中的 "最后一条"。
+          # 4. `tac` - 再次反转，恢复原始顺序。
+          # 最终效果：保留每个配置项在合并文件中最后出现的那一次，实现了优雅的覆盖。
+          tac ./merged_user.js | grep '^user_pref' | awk -F '["()]' '!seen[$3]++' | tac > ./user.js
+
+          echo "Cleaning up temporary files..."
+          rm ./gwfox_user.js ./betterfox_user.js ./merged_user.js
+
+      # 第 4 步: 提交变更
+      # 使用一个现成的 action 来自动提交变更（如果有的话）
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Automated Sync: Update Firefox configs"
+          file_pattern: "user.js chrome/" # 只在 user.js 或 chrome/ 目录有变动时才提交
+          commit_user_name: "GitHub Actions Bot"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "GitHub Actions Bot <github-actions[bot]@users.noreply.github.com>"
