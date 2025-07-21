@@ -56,8 +56,7 @@ jobs:
           # 检查黑名单文件是否存在。如果存在，就用它来过滤掉临时文件中的相应行
           if [ -f ./user_blocklist.txt ]; then
             echo "Applying blocklist from user_blocklist.txt..."
-            # grep -v -f fileA fileB 的意思是：从 fileB 中删除所有包含 fileA 中任何一行的内容的行
-            grep -v -f ./user_blocklist.txt ./temp_user.js > ./user.js
+            grep -v -f <(grep '.' ./user_blocklist.txt) ./temp_user.js > ./user.js
           else
             echo "Blocklist not found, skipping..."
             mv ./temp_user.js ./user.js
