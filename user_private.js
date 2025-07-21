@@ -19,3 +19,14 @@ user_pref("network.http.pacing.requests.enabled", true);
 user_pref("network.http.referer.XOriginTrimmingPolicy", 0);
 
 user_pref("security.OCSP.enabled", 1);
+user_pref("privacy.trackingprotection.enabled", true);
+user_pref("privacy.trackingprotection.socialtracking.enabled", true);
+user_pref("network.cookie.sameSite.laxByDefault", true);
+
+user_pref("security.tls.enable_0rtt_data", true);
+user_pref("network.http.http3.enable", true); // 启用HTTP/3以获得更好性能
+user_pref("gfx.webrender.all", true);
+user_pref("layers.gpu-process.enabled", true);
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+user_pref("browser.tabs.unloadOnLowMemory", true);
+user_pref("network.trr.mode", 2); // 启用DoH作为备选

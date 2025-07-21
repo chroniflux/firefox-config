@@ -4,12 +4,10 @@ media.memory_cache_max_size
 media.cache_readahead_limit
 media.cache_resume_threshold
 image.mem.decode_bytes_at_a_time
-
 network.http.max-connections
 network.http.max-persistent-connections-per-server
 network.http.max-urgent-start-excessive-connections-per-host
-
 network.dnsCacheExpiration
 network.ssl_tokens_cache_capacity
-
+browser.safebrowsing.downloads.remote.enabled
 browser.urlbar.update2.engineAliasRefresh
