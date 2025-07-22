@@ -1,12 +1,14 @@
 user_pref("browser.tabs.closeWindowWithLastTab", false);
-user_pref("browser.theme.native-theme", true);
+
 user_pref("browser.tabs.allow_transparent_browser", true);
+user_pref("widget.transparent-windows", true);
+user_pref("widget.macos.titlebar-blend-mode.behind-window", true);
 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("svg.context-properties.content.enabled", true);
+user_pref("browser.theme.native-theme", true);
+
 user_pref("sidebar.animation.enabled", false);
-user_pref("widget.transparent-windows", true);
-user_pref("widget.macos.titlebar-blend-mode.behind-window", true);
 
 user_pref("browser.cache.disk.enable", true);
 user_pref("browser.sessionhistory.max_total_viewers", 8);
