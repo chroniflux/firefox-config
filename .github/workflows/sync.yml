@@ -43,12 +43,11 @@ jobs:
       - name: Process user.js files with blocklist
         run: |
           echo "Fetching user.js files..."
-          curl -sL "https://raw.githubusercontent.com/akkva/gwfox/main/user.js" -o ./gwfox_user.js
           curl -sL "https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js" -o ./betterfox_user.js
 
           echo "Merging, de-duplicating, and applying blocklist..."
           # 1. 像以前一样合并所有文件，你的私有配置在最后以确保优先
-          cat ./gwfox_user.js ./betterfox_user.js ./user_private.js > ./merged_user.js
+          cat ./betterfox_user.js ./user_private.js > ./merged_user.js
 
           # 2. 像以前一样去重，但先输出到一个临时文件
           tac ./merged_user.js | grep '^user_pref' | awk -F '["()]' '!seen[$3]++' | tac > ./temp_user.js
