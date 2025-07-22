@@ -62,7 +62,7 @@ jobs:
           fi
 
           echo "Cleaning up temporary files..."
-          rm ./gwfox_user.js ./betterfox_user.js ./merged_user.js ./temp_user.js
+          rm ./betterfox_user.js ./merged_user.js ./temp_user.js
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
