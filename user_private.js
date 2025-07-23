@@ -39,3 +39,5 @@ user_pref("gfx.webrender.all", true);
 user_pref("layers.gpu-process.enabled", true);
 user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
 user_pref("browser.tabs.unloadOnLowMemory", true);
+
+user_pref("accessibility.browsewithcaret", false);
