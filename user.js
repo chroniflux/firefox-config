@@ -2,6 +2,7 @@ user_pref("accessibility.browsewithcaret", false);
 user_pref("app.normandy.api_url", "");
 user_pref("app.normandy.enabled", false);
 user_pref("app.shield.optoutstudies.enabled", false);
+user_pref("apz.overscroll.enabled", true);
 user_pref("breakpad.reportURL", "");
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.aboutwelcome.enabled", false);
@@ -36,8 +37,10 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 user_pref("browser.search.suggest.enabled", true);
 user_pref("browser.search.update", false);
+user_pref("browser.sessionhistory.max_entries", 25); // Default: 50
 user_pref("browser.sessionhistory.max_total_viewers", 4);
 user_pref("browser.sessionstore.interval", 180000);
+user_pref("browser.sessionstore.max_tabs_undo", 10); // Default: 25
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.tabs.allow_transparent_browser", true);
 user_pref("browser.tabs.closeWindowWithLastTab", false);
@@ -56,6 +59,7 @@ user_pref("content.notify.interval", 100000);
 user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("datareporting.usage.uploadEnabled", false);
+user_pref("dom.ipc.processCount", 8);
 user_pref("editor.truncate_user_pastes", false);
 user_pref("extensions.enabledScopes", 5);
 user_pref("extensions.getAddons.cache.enabled", false);
@@ -74,6 +78,7 @@ user_pref("layout.css.grid-template-masonry-value.enabled", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 user_pref("media.cache_readahead_limit", 7200);
 user_pref("media.cache_resume_threshold", 3600);
+user_pref("media.hardware-video-decoding.force-enabled", true);
 user_pref("media.memory_cache_max_size", 131072); // 2x for 4K video
 user_pref("network.IDN_show_punycode", true);
 user_pref("network.auth.subresource-http-auth-allow", 1);
