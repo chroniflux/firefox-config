@@ -35,6 +35,10 @@ user_pref("network.predictor.enable-hover-on-ssl", true);
 // Speculative parallel limit - Balances performance and privacy
 user_pref("network.http.speculative-parallel-limit", 6);
 
+// OCSP checking - significant latency on HTTPS connections
+// Betterfox: 0 (disabled) - Consider 1 (enabled but non-blocking)
+user_pref("security.OCSP.enabled", 1);
+
 /** MAC TRANSPARENCY SUPPORT **/
 
 user_pref("browser.tabs.allow_transparent_browser", true);
@@ -50,3 +54,11 @@ user_pref("sidebar.animation.enabled", false); // Performance
 
 user_pref("accessibility.browsewithcaret", false);
 user_pref("browser.tabs.closeWindowWithLastTab", false);
+
+// Search suggestions - improves search responsiveness
+// Betterfox: false - Consider enabling for URL bar only
+user_pref("browser.search.suggest.enabled", true);
+user_pref("browser.urlbar.suggest.searches", true);
+
+// Session restore interval - balances performance and privacy
+user_pref("browser.sessionstore.interval", 180000);
