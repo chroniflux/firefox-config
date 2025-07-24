@@ -15,6 +15,16 @@ user_pref("media.memory_cache_max_size", 131072); // 2x for 4K video
 user_pref("gfx.canvas.accelerated.cache-size", 1024); // 2x for Retina
 user_pref("gfx.content.skia-font-cache-size", 40); // 2x for fonts
 
+// Hardware video decoding - NOT default on Mac, real performance impact
+user_pref("media.hardware-video-decoding.force-enabled", true);
+
+// ONLY if you have 16GB+ RAM - default is 4
+user_pref("dom.ipc.processCount", 8);
+
+// Memory optimizations - Good for many tabs
+user_pref("browser.sessionstore.max_tabs_undo", 10); // Default: 25
+user_pref("browser.sessionhistory.max_entries", 25); // Default: 50
+
 /** NETWORK PERFORMANCE (BALANCED) **/
 
 // DNS prefetching - Major performance boost
@@ -62,3 +72,6 @@ user_pref("browser.urlbar.suggest.searches", true);
 
 // Session restore interval - balances performance and privacy
 user_pref("browser.sessionstore.interval", 180000);
+
+// Elastic scrolling - Mac users expect this, NOT default
+user_pref("apz.overscroll.enabled", true);
