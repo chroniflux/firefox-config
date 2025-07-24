@@ -1,12 +1,10 @@
 name: Sync and Merge Firefox Configs
 
 on:
-  # 1. 允许你从 GitHub 仓库的 Actions 页面手动触发此工作流
   workflow_dispatch:
 
-  # 2. 设置定时任务，每天 UTC 时间 11:00 运行一次
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "0 12 * * *"
 
   push:
     branches:
@@ -16,16 +14,12 @@ jobs:
   sync-and-merge:
     runs-on: ubuntu-latest
     permissions:
-      # 授予工作流向你的仓库写入内容的权限
       contents: write
 
     steps:
-      # 第 1 步: 检出你自己的仓库，这样我们才能在里面工作和提交
-      # 我们需要获取 user_private.js 文件，所以这次 checkout 很重要
       - name: Checkout self
         uses: actions/checkout@v4
 
-      # 第 2 步: 同步 gwfox 的 chrome 目录 (此步骤不变)
       - name: Sync chrome directory from gwfox
         run: |
           echo "Cloning gwfox repository sparsely for 'chrome' directory..."
@@ -39,36 +33,23 @@ jobs:
           mv ./tmp_gwfox/chrome ./chrome
           rm -rf ./tmp_gwfox
 
-      # 第 3 步: 拉取、合并和处理 user.js 文件 (★★★ 全新逻辑 ★★★)
       - name: Process user.js files with blocklist
         run: |
           echo "Fetching user.js files..."
           curl -sL "https://raw.githubusercontent.com/yokoffing/Betterfox/main/user.js" -o ./betterfox_user.js
+          echo "Merging and de-duplicating..."
+          cat ./betterfox_user.js ./user-overrides.js > ./merged_user.js
 
-          echo "Merging, de-duplicating, and applying blocklist..."
-          # 1. 像以前一样合并所有文件，你的私有配置在最后以确保优先
-          cat ./betterfox_user.js ./user_private.js > ./merged_user.js
-
-          # 2. 像以前一样去重，但先输出到一个临时文件
-          tac ./merged_user.js | grep '^user_pref' | awk -F '["()]' '!seen[$3]++' | tac > ./temp_user.js
-
-          # 检查黑名单文件是否存在。如果存在，就用它来过滤掉临时文件中的相应行
-          if [ -f ./user_blocklist.txt ]; then
-            echo "Applying blocklist from user_blocklist.txt..."
-            grep -v -f <(grep '.' ./user_blocklist.txt) ./temp_user.js > ./user.js
-          else
-            echo "Blocklist not found, skipping..."
-            mv ./temp_user.js ./user.js
-          fi
+          awk -F'"' '/^user_pref\(/{prefs[$2]=$0} END{for(p in prefs)print prefs[p]}' ./merged_user.js | sort > ./user.js
 
           echo "Cleaning up temporary files..."
-          rm ./betterfox_user.js ./merged_user.js ./temp_user.js
+          rm ./betterfox_user.js ./merged_user.js
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Automated Sync: Update Firefox configs"
-          file_pattern: "user.js chrome/ user_private.js user_blocklist.txt"
+          file_pattern: "user.js chrome/ user-overrides.js"
           commit_user_name: "GitHub Actions Bot"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "GitHub Actions Bot <github-actions[bot]@users.noreply.github.com>"
