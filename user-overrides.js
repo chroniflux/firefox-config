@@ -75,3 +75,6 @@ user_pref("browser.sessionstore.interval", 180000);
 
 // Elastic scrolling - Mac users expect this, NOT default
 user_pref("apz.overscroll.enabled", true);
+
+// Enable gwfox plus
+user_pref("gwfox.plus", true);
