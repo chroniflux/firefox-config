@@ -73,6 +73,7 @@ user_pref("full-screen-api.warning.timeout", 0);
 user_pref("geo.provider.network.url", "https://beacondb.net/v1/geolocate");
 user_pref("gfx.canvas.accelerated.cache-size", 1024); // 2x for Retina
 user_pref("gfx.content.skia-font-cache-size", 40); // 2x for fonts
+user_pref("gwfox.plus", true);
 user_pref("image.mem.decode_bytes_at_a_time", 65536); // 2x Betterfox
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
