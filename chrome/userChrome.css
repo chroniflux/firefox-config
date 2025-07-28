@@ -1524,7 +1524,7 @@ richlistbox {
 
 #customization-panelWrapper > .panel-arrowcontent,
 #customization-container {
-@media not(-moz-platform: linux) {
+@media not (-moz-platform: linux) {
   background-color: transparent !important;
 }
 }
@@ -2840,6 +2840,18 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
 }
 &[activemedia-blocked] {
   background-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-circle-12.svg");
+}
+}
+
+:has(#sidebar-box:not([hidden])) {
+#nav-bar .toolbarbutton-1:nth-child(5) {
+  margin-left: 290px !important;
+}
+}
+
+:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
+#nav-bar .toolbarbutton-1:nth-child(5) {
+  margin-left: 410px !important;
 }
 }
 
