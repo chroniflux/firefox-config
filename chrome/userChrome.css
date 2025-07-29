@@ -1024,6 +1024,10 @@ tab .tab-label {
   margin-inline-end: 0 !important;
 }
 
+#tabbrowser-tabs[orient="vertical"] {
+  grid-gap: unset !important;
+}
+
 #tabbrowser-tabs[movingtab] {
   margin-bottom: -16px !important;
 }
@@ -1140,6 +1144,10 @@ tab-group[collapsed][hasactivetab] > & {
 
 .tabbrowser-tab[pinned] .tab-icon-image {
   margin-right: 5.5px !important;
+}
+
+.tab-icon-image:not([src], [pinned], [crashed], [sharing], [pictureinpicture], [busy]) {
+   display: block !important;
 }
 
 .tab-content[pinned] {
@@ -2124,6 +2132,7 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
 }
 
 #vertical-pinned-tabs-splitter {
+  margin-block-start: 4px !important;
 &:hover {
   background-color: var(--outline-color) !important;
 }
@@ -2385,9 +2394,10 @@ tab > stack {
   order: 3;
 }
 
+.tabbrowser-tab:hover .tab-throbber,
 .tabbrowser-tab:not([pinned]):hover .tab-icon-image,
 .tabbrowser-tab[selected]:not(:hover) .tab-close-button {
-  display: none;
+  display: none !important;
 }
 
 .tabbrowser-tab:not([pinned]):hover .tab-label-container {
@@ -2959,6 +2969,10 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
 .tabbrowser-tab:not([pinned]) .tab-icon-image {
   display: unset;
   margin-left: 6px;
+}
+
+.tabbrowser-tab:not([pinned]):hover .tab-icon-image {
+  display: unset !important;
 }
 
 .tab-throbber {
@@ -3654,7 +3668,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 --display: none;
 }
 
-:has(#sidebar-main:hover, #urlbar:not([breakout][breakout-extend])[persistsearchterms]:hover, #urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-box > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-permission-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #notification-popup-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #tracking-protection-icon-container[open], .tab-throbber[busy], #tab-group-name:focus, .titlebar-buttonbox:hover, toolbarbutton:is(#sidebar-button, #reload-button, #stop-button, #back-button, #forward-button, #PanelUI-menu-button, #nav-bar-overflow-button, #unified-extensions-button, #downloads-button):hover, #PanelUI-menu-button[open], #nav-bar-overflow-button[open], #unified-extensions-button[open], #downloads-button[open], #urlbar-searchmode-switcher[open]) {
+:has(#sidebar-main:hover, #urlbar:not([breakout][breakout-extend])[persistsearchterms]:hover, #urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-box > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-permission-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #notification-popup-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #tracking-protection-icon-container[open], .tab-throbber[busy], #tab-group-name:focus, .titlebar-buttonbox:hover, toolbarbutton:is(#sidebar-button, #reload-button, #stop-button, #back-button, #forward-button, #PanelUI-menu-button, #nav-bar-overflow-button, #unified-extensions-button, #downloads-button):hover, #PanelUI-menu-button[open], #nav-bar-overflow-button[open], #unified-extensions-button[open], #downloads-button[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher[open]) {
 .titlebar-buttonbox-container {
   left: 7px;
   opacity: 1;
