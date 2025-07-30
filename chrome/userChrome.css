@@ -2119,6 +2119,17 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
   display: none !important;
 }
 
+.actions-list {
+  display: var(--display, inherit) !important;
+&:has(.expanded-button) {
+  display: flex !important;
+}
+&[orientation="horizontal"] {
+  justify-content: center !important;
+  max-width: calc(100% - 20px) !important;
+}
+}
+
 .more-tools-button {
   display: var(--mtb) !important;
 }
@@ -2253,6 +2264,10 @@ tab-group > .tabbrowser-tab,
 
 :has(#tabbrowser-tabs[expanded]) {
   --mtb: none;
+
+#sidebar-main {
+  min-width: 221px !important;
+}
 }
 
 :has(#tabbrowser-tabs:not([expanded])) {
@@ -2303,6 +2318,26 @@ tab-group > .tabbrowser-tab,
 :has(#urlbar[usertyping]):not(:has(#urlbar[persistsearchterms])) {
 #urlbar {
   left: 20vw !important;
+}
+}
+}
+
+:has(#sidebar-main[hidden]) {
+#sidebar-box {
+  margin-left: 2px !important;
+  margin-right: -6px !important;
+  margin-bottom: 2px !important;
+}
+}
+
+@media -moz-pref("sidebar.visibility", "expand-on-hover") {
+tab-group {
+.tab-group-label {
+  background-position: left 10px bottom 10px;
+
+tab-group[collapsed] > .tab-group-label-container > & {
+  background-position: left 8px bottom 8px;
+}
 }
 }
 }
@@ -2620,19 +2655,6 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   padding-left: var(--padding) !important;
 }
 
-.extensions, .customize-extensions-heading,
-.tools-and-extensions > moz-button[extension],
-button:has([src="chrome://global/skin/icons/settings.svg"]) {
-  display: none !important;
-}
-
-.actions-list {
-  display: var(--display, inherit) !important;
-&:has(.expanded-button) {
-  display: flex !important;
-}
-}
-
 .webextension-browser-action {
   margin-bottom: 9px !important;
 }
@@ -2802,10 +2824,7 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
 }
 
 :has(#tabbrowser-tabs[expanded]) {
---padding: 0;
-#sidebar-main {
-  min-width: 221px !important;
-}
+  --padding: 0;
 
 .tab-close-button {
   margin-inline-end: calc(-1 * var(--tab-close-button-padding)) !important;
