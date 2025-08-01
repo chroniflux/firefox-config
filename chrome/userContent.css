@@ -72,7 +72,7 @@ body { background-color: #282828 !important; }
 }
 }
 
-@-moz-document url-prefix(about:) {
+@-moz-document url-prefix(about:), regexp("chrome://(?!browser\.xhtml).*") {
 input[type="search"] {
   background-color: light-dark(#eeeeef, #373737) !important;
   border-color: transparent !important;
@@ -109,6 +109,32 @@ search-textbox {
   outline-color: transparent !important;
   outline-width: 18px !important;
 }
+
+input[type="checkbox"], .checkbox-check {
+  appearance: none !important;
+  background-color: transparent !important;
+  border-radius: 2px !important;
+  border: 2px solid rgba(165, 165, 165, .8) !important;
+  &[checked], &:checked {
+  background-color: light-dark(#4481f2, #1280fd) !important;
+  background-image: url("resources/check.svg") !important;
+  border: none !important;
+  &:hover:active { background-color: light-dark(#0a4eb8, #417bde) !important; }
+}
+}
+
+.radio-check {
+  appearance: none !important;
+  background-color: transparent !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(165, 165, 165, .8) !important;
+  &[selected] {
+  background-color: light-dark(#4481f2, #1280fd) !important;
+  background-image: url("resources/radio.svg") !important;
+  border: none !important;
+  &:hover:active { background-color: light-dark(#0a4eb8, #417bde) !important; }
+}
+}
 }
 
 @-moz-document url-prefix("about:firefoxview") {
@@ -121,25 +147,12 @@ search-textbox {
 }
 
 @-moz-document url-prefix("about:preferences") {
-.checkbox-check:not([native]) {
-  appearance: none !important;
-  background-color: transparent !important;
-  border-radius: 2px !important;
-  border: 2px solid rgba(165, 165, 165, .8) !important;
-  &[checked] {
-  background-color: light-dark(#4481f2, #1280fd) !important;
-  background-image: url("resources/check.svg") !important;
-  border: none !important;
-  &:hover:active { background-color: light-dark(#0a4eb8, #417bde) !important; }
-}
-}
-
-input[type="radio"], .radio-check {
+input[type="radio"] {
   appearance: none !important;
   background-color: transparent !important;
   border-radius: 50% !important;
   border: 2px solid rgba(165, 165, 165, .8) !important;
-  &[selected], &:checked {
+  &:checked {
   background-color: light-dark(#4481f2, #1280fd) !important;
   background-image: url("resources/radio.svg") !important;
   border: none !important;

@@ -960,19 +960,6 @@ toolbarspring {
   border-top: 1px solid var(--bg3) !important;
 }
 
-.checkbox-check:not([native]) {
-  appearance: none !important;
-  background-color: transparent !important;
-  border-radius: 2px !important;
-  border: 2px solid rgba(165, 165, 165, .8) !important;
-  &[checked] {
-  background-color: light-dark(#4481f2, #1280fd) !important;
-  background-image: url("resources/check.svg") !important;
-  border: none !important;
-  &:hover:active { background-color: light-dark(#0a4eb8, #417bde) !important; }
-}
-}
-
 /* tabs */
 
 .tab-background {
@@ -1502,6 +1489,21 @@ tree {
 }
 }
 
+@-moz-document regexp("chrome://(?!browser\.xhtml).*") {
+input[type="checkbox"], .checkbox-check {
+  appearance: none !important;
+  background-color: transparent !important;
+  border-radius: 2px !important;
+  border: 2px solid rgba(165, 165, 165, .8) !important;
+  &[checked], &:checked {
+  background-color: light-dark(#4481f2, #1280fd) !important;
+  background-image: url("resources/check.svg") !important;
+  border: none !important;
+  &:hover:active { background-color: light-dark(#0a4eb8, #417bde) !important; }
+}
+}
+}
+
 treechildren::-moz-tree-row {
   outline: none !important;
   border-radius: 2px !important;
@@ -1618,6 +1620,37 @@ richlistbox {
 > .swipe-nav-icon-circle {
   fill: #1280fd !important;
 }
+}
+}
+
+#ctrlTab-panel {
+  --panel-background: transparent !important;
+  background-color: transparent !important;
+}
+
+.ctrlTab-preview-inner {
+  border-radius: 16px !important;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .35) !important;
+  background-color: rgba(0, 0, 0, .85) !important;
+}
+
+#ctrlTab-showAll {
+  border-radius: 16px !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .35) !important;
+  background-color: rgba(0, 0, 0, .85) !important;
+  margin-top: 28px !important;
+}
+
+.ctrlTab-canvas {
+  border-radius: 16px !important;
+  box-shadow: none !important;
+  margin-top: -8px !important;
+  margin-left: -8px !important;
+  margin-right: -8px !important;
+> img,
+> canvas {
+  border-top-left-radius: 14px !important;
+  border-top-right-radius: 14px !important;
 }
 }
 
@@ -1782,12 +1815,17 @@ input {
 
 #tabbrowser-tabbox {
   clip-path: inset(-8px 0 0 -8px);
-  transition: clip-path 200ms;
+  transition: clip-path 300ms !important;
 }
 
 :has(#tabbrowser-tabs[expanded]) {
 #tabbrowser-tabbox {
   clip-path: inset(-8px 0 0 168px);
+  transition: clip-path 300ms !important;
+}
+
+#urlbar, .tabbrowser-tab {
+  transition: width 200ms !important;
 }
 }
 
@@ -2137,16 +2175,40 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
 
 #sidebar-tools-and-extensions-splitter {
   display: var(--display) !important;
-  background-color: transparent !important;
+  width: 10px !important;
+  margin-inline: auto !important;
+  margin-block-start: 15px !important;
+  border-top-color: transparent !important;
+.wrapper:hover &:not(:has(~ .actions-list:hover)) {
+  background-color: var(--panel-separator-color) !important;
+  opacity: .5;
+  transition: .25s !important;
+  -moz-window-dragging: no-drag;
 &:hover {
   background-color: var(--outline-color) !important;
+  width: calc(100% - 25px) !important;
+  opacity: 1;
+  transition: .25s !important;
+}
 }
 }
 
 #vertical-pinned-tabs-splitter {
   margin-block-start: 4px !important;
+  width: 10px !important;
+  margin-inline: auto !important;
+  border-top-color: transparent !important;
+#vertical-tabs:hover & {
+  background-color: var(--panel-separator-color) !important;
+  opacity: .5;
+  transition: .25s !important;
+  -moz-window-dragging: no-drag;
 &:hover {
   background-color: var(--outline-color) !important;
+  width: calc(100% - 25px) !important;
+  opacity: 1;
+  transition: .25s !important;
+}
 }
 }
 
@@ -2300,16 +2362,10 @@ tab-group > .tabbrowser-tab,
 }
 
 .tab-close-button {
-  background-image: linear-gradient(var(--close-button-extra-background)),
-                    linear-gradient(var(--bg2)) !important;
-
-&:hover {
-  --close-button-extra-background: var(--button-background-color-ghost) !important;
-}
-
-&:hover:active {
-  --close-button-extra-background: var(--button-background-color-ghost-hover) !important;
-}
+  background-image: none !important;
+  box-shadow: none !important;
+  top: 0 !important;
+  inset-inline-start: 0 !important;
 }
 
 #urlbar[breakout][breakout-extend] {
@@ -2502,7 +2558,7 @@ tab > stack {
   z-index: 1;
   bottom: -32px;
   opacity: 0;
-  transition: .25s;
+  transition: .25s !important;
   padding-bottom: 0 !important;
   background-color: var(--bg4) !important;
   backdrop-filter: blur(30px) !important;
@@ -2519,7 +2575,7 @@ tab > stack {
 #PersonalToolbar:hover {
   bottom: 0;
   opacity: 1;
-  transition: .25s;
+  transition: .25s !important;
 }
 
 #PersonalToolbar::before {
@@ -2527,9 +2583,8 @@ tab > stack {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -8px;
-  height: 8px;
-  background-color: transparent; 
+  bottom: -10px;
+  height: 10px;
 }
 
 toolbarbutton.bookmark-item:not(.subviewbutton) {
