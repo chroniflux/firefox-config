@@ -130,6 +130,12 @@
 &[sidebar-panel-open] {
   margin-inline-end: 2px !important;
   margin-bottom: 2px !important;
+@media (-moz-platform: windows) {
+  margin-inline-end: 1px !important;
+}
+@media (-moz-platform: linux) {
+  margin-inline-end: 0 !important;
+}
 }
 }
 }
@@ -375,7 +381,7 @@ toolbarspring {
 }
 }
 
-#urlbar-background {
+#urlbar-background, .urlbar-background {
   height: 30px !important;
   border: none !important;
   border-radius: 6px !important;
@@ -383,13 +389,13 @@ toolbarspring {
   transition: background .5s !important;
 }
 
-#urlbar:hover #urlbar-background {
+#urlbar:hover #urlbar-background, #urlbar:hover .urlbar-background {
   background: var(--button-active-bgcolor) !important;
   box-shadow: none !important;
   transition: background .5s !important;
 }
 
-#urlbar[open] #urlbar-background {
+#urlbar[open] #urlbar-background, #urlbar[open] .urlbar-background {
   transition: none !important;
 }
 
@@ -419,13 +425,14 @@ toolbarspring {
   outline: none !important;
 }
 
-#urlbar > #urlbar-background {
+#urlbar > #urlbar-background, #urlbar > .urlbar-background {
   outline-style: solid !important;
   outline-color: transparent !important;
   outline-width: 18px !important;
 }
 
-#urlbar[focused]:not([suppress-focus-border]) > #urlbar-background {
+#urlbar[focused]:not([suppress-focus-border]) > #urlbar-background,
+#urlbar[focused]:not([suppress-focus-border]) > .urlbar-background {
   outline-color: var(--outline-color) !important;
   outline-width: 3px !important;
   outline-offset: -1px !important;
@@ -493,7 +500,8 @@ toolbarspring {
 }
 } 
 
-#urlbar[breakout][breakout-extend] #urlbar-background {
+#urlbar[breakout][breakout-extend] #urlbar-background,
+#urlbar[breakout][breakout-extend] .urlbar-background {
   background-color: var(--bg4) !important;
   backdrop-filter: blur(30px) !important;
   box-shadow: var(--bs1) !important;
@@ -504,7 +512,7 @@ toolbarspring {
 }
 
 :has(#urlbar[breakout][breakout-extend]) {
-#urlbar-background {
+#urlbar-background, .urlbar-background {
   height: unset !important;
 }
 }
@@ -519,7 +527,7 @@ toolbarspring {
   margin-top: 25px !important;
 }
 
-#urlbar-background {
+#urlbar-background, .urlbar-background {
   background-color: var(--bg4) !important;
   backdrop-filter: blur(30px) !important;
   box-shadow: var(--bs1) !important;
@@ -536,7 +544,7 @@ toolbarspring {
 }
 
 :has(#urlbar[breakout][breakout-extend]) {
-#urlbar-background {
+#urlbar-background, .urlbar-background {
   height: unset !important;
 }
 
@@ -559,7 +567,8 @@ toolbarspring {
   font-size: 21px !important;
 }
 
-#urlbar[focused] #urlbar-background {
+#urlbar[focused] #urlbar-background,
+#urlbar[focused] .urlbar-background {
   box-shadow: var(--bs1) !important;
 }
 
@@ -755,6 +764,7 @@ toolbarspring {
 }
 
 #urlbar[focused] > #urlbar-background,
+#urlbar[focused] > .urlbar-background,
 #searchbar:focus-within {
   box-shadow: none !important;
 }
@@ -954,10 +964,6 @@ toolbarspring {
 
 #appMenu-fullscreen-button2:active {
   background: var(--button-active-bgcolor) !important;
-}
-
-#appMenu-zoom-controls {
-  border-top: 1px solid var(--bg3) !important;
 }
 
 /* tabs */
@@ -1227,7 +1233,7 @@ tab-group:not([collapsed]) > &::after {
 menupopup, panel[type="arrow"] {
   --panel-border-radius: 6px !important;
   --panel-padding: 6px !important;
-  --panel-separator-color: var(--bg3) !important;
+  --panel-separator-color: transparent !important;
   --arrowpanel-background: var(--bg2) !important;
   --arrowpanel-border-color: transparent !important;
   --arrowpanel-color: light-dark(#000, #fff) !important;
@@ -1287,7 +1293,7 @@ panelmultiview, popupnotification {
   stroke: transparent !important;
 }
 
-.proton-zap {
+.proton-zap, toolbarseparator.proton-zap::before {
   border-image: none !important;
 }
 
@@ -1346,8 +1352,19 @@ menupopup menuitem[_moz-menuactive]:not([disabled=true]),
   color: inherit !important;
 }
 
-toolbarseparator, menuseparator::before {
+toolbarseparator::before {
   border-top: 1px solid var(--bg3) !important;
+  margin: 0 8px 0 !important;
+  content: "";
+  display: block;
+  flex: 1;
+}
+
+menuseparator::before {
+  border-top: 1px solid var(--bg3) !important;
+@media not (-moz-platform: windows) {
+  margin: 0 8px 0 !important;
+}
 }
 
 menupopup menuseparator {
@@ -1421,12 +1438,13 @@ menupopup,
 
 :root:not([chromehidden~="toolbar"]):has(#sidebar-main[hidden]) #sidebar-main,
 window[role="dialog"], .findbar-container, #statuspanel-label,
-#urlbar[breakout][breakout-extend] #urlbar-background {
+#urlbar[breakout][breakout-extend] #urlbar-background,
+#urlbar[breakout][breakout-extend] .urlbar-background {
   background-color: light-dark(rgba(255, 255, 255, .55), rgba(25, 25, 25, .65)) !important;
 }
 
 :has(#urlbar[usertyping]):not(:has(#urlbar[persistsearchterms])) {
-#urlbar-background {
+#urlbar-background, .urlbar-background {
   background-color: light-dark(rgba(255, 255, 255, .55), rgba(25, 25, 25, .65)) !important;
 }
 }
@@ -1490,12 +1508,25 @@ tree {
 }
 
 @-moz-document regexp("chrome://(?!browser\.xhtml).*") {
-input[type="checkbox"], .checkbox-check {
+input[type="checkbox"] {
   appearance: none !important;
   background-color: transparent !important;
   border-radius: 2px !important;
   border: 2px solid rgba(165, 165, 165, .8) !important;
-  &[checked], &:checked {
+  &:checked {
+  background-color: light-dark(#4481f2, #1280fd) !important;
+  background-image: url("resources/check.svg") !important;
+  border: none !important;
+  &:hover:active { background-color: light-dark(#0a4eb8, #417bde) !important; }
+}
+}
+
+.checkbox-check {
+  appearance: none !important;
+  background-color: transparent !important;
+  border-radius: 2px !important;
+  border: 2px solid rgba(165, 165, 165, .8) !important;
+  &[checked] {
   background-color: light-dark(#4481f2, #1280fd) !important;
   background-image: url("resources/check.svg") !important;
   border: none !important;
@@ -1583,6 +1614,7 @@ richlistbox {
 }
 
 #urlbar[breakout][breakout-extend] #urlbar-background,
+#urlbar[breakout][breakout-extend] .urlbar-background,
 .dialogBox {
   outline: 1px solid rgba(235, 235, 235, .2) !important;
   outline-offset: -1px !important;
@@ -1807,6 +1839,12 @@ input {
   opacity: .5 !important;
 }
 
+.sidebar-splitter {
+@media -moz-pref("sidebar.revamp") or (not (-moz-platform: linux)) {
+  width: var(--splitter-width) !important;
+}
+}
+
 :root[sidebar-expand-on-hover] {
 #sidebar-main {
   background-color: transparent !important;
@@ -1823,15 +1861,11 @@ input {
   clip-path: inset(-8px 0 0 168px);
   transition: clip-path 300ms !important;
 }
-
-#urlbar, .tabbrowser-tab {
-  transition: width 200ms !important;
-}
 }
 
 :has(#sidebar-box:not([hidden])) {
 #tabbrowser-tabbox {
-  clip-path: inset(-8px 0 0 -8px);
+  clip-path: none !important;
 }
 }
 
@@ -1889,6 +1923,7 @@ menupopup, panel[type="arrow"] {
 }
 
 #urlbar[breakout][breakout-extend] #urlbar-background,
+#urlbar[breakout][breakout-extend] .urlbar-background,
 .findbar-container, .dialogBox, #statuspanel-label {
   outline: none !important;
 }
@@ -2178,7 +2213,9 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
   width: 10px !important;
   margin-inline: auto !important;
   margin-block-start: 15px !important;
-  border-top-color: transparent !important;
+  border-top: none !important;
+  border-color: transparent !important;
+  background-color: transparent !important;
 .wrapper:hover &:not(:has(~ .actions-list:hover)) {
   background-color: var(--panel-separator-color) !important;
   opacity: .5;
@@ -2387,13 +2424,14 @@ tab-group > .tabbrowser-tab,
 }
 }
 
+@media not -moz-pref("gwfox.plus") {
 @media -moz-pref("sidebar.visibility", "expand-on-hover") {
 tab-group {
 .tab-group-label {
   background-position: left 10px bottom 10px;
-
 tab-group[collapsed] > .tab-group-label-container > & {
   background-position: left 8px bottom 8px;
+}
 }
 }
 }
@@ -2490,6 +2528,12 @@ tab > stack {
 .tabbrowser-tab .tab-label-container {
   margin-left: 5px;
   order: 3;
+}
+
+.tab-content {
+:root:not([uidensity="compact"], [sidebar-expand-on-hover]) &[pinned] {
+  padding: 0 17px !important;
+}
 }
 
 .tabbrowser-tab:hover .tab-throbber,
@@ -2722,7 +2766,6 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 
 #urlbar {
-  position: fixed !important;
   left: 10px !important;
   top: 47px !important;
   max-width: 201px !important;
@@ -2785,7 +2828,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 }
 
-#urlbar-background, .urlbar-input-container {
+#urlbar-background, .urlbar-background, .urlbar-input-container {
   height: 32px !important;
   border-radius: 8px !important;
 }
@@ -2954,6 +2997,12 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 }
 }
+
+@media -moz-pref("sidebar.visibility", "expand-on-hover") {
+.tabbrowser-tab[pinned] .tab-content {
+  margin-left: -6px !important;
+}
+}
 }
 
 :has(#tabbrowser-tabs:not([expanded])) {
@@ -3075,6 +3124,10 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 }
 
+#urlbar::before {
+  width: 82px;
+}
+
 #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher {
   margin-left: 16px !important;
   margin-right: 16px !important;
@@ -3125,6 +3178,10 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher {
   margin-left: 0 !important;
   margin-right: 6px !important;
+}
+
+#urlbar::before {
+  width: 220px 
 }
 
 #tabbrowser-tabbox {
