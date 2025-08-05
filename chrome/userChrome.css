@@ -142,10 +142,6 @@
 }
 }
 
-#browser {
-  clip-path: circle(100%);
-}
-
 :has(#PersonalToolbar:hover, #sidebar-main:hover) {
 #tabbrowser-tabbox browser {
   -moz-window-dragging: unset;
@@ -1135,27 +1131,12 @@ tab-group[collapsed][hasactivetab] > & {
   min-width: 138px !important;
 }
 
-.tabbrowser-tab[pinned] .tab-icon-image {
-  margin-right: 5.5px !important;
-}
-
 .tab-icon-image:not([src], [pinned], [crashed], [sharing], [pictureinpicture], [busy]) {
    display: block !important;
 }
 
-.tab-content[pinned] {
-  margin-right: 5px;
-  padding-left: 8px !important;
-  background-image: url("resources/pinned.svg");
-  background-repeat: no-repeat;
-  background-position: right bottom 10px;
-  -moz-context-properties: fill, fill-opacity;
-  fill: currentColor;
-  fill-opacity: .6;
-  & .tab-label-container {
-  margin-right: 6px;
-  mask-image: linear-gradient(to left, transparent, #fff 3ch);
-}
+.tab-content[pinned] .tab-label-container {
+  margin: 0 !important;
 }
 
 .tab-background {
@@ -2530,7 +2511,7 @@ tab > stack {
   order: 3;
 }
 
-.tab-content {
+#tabbrowser-tabs[orient="vertical"] .tab-content {
 :root:not([uidensity="compact"], [sidebar-expand-on-hover]) &[pinned] {
   padding: 0 17px !important;
 }
@@ -2599,7 +2580,7 @@ tab > stack {
   width: calc(100% - 16px);
   margin: 0 8px 8px 8px !important;
   height: 48px !important;
-  z-index: 1;
+  z-index: 9;
   bottom: -32px;
   opacity: 0;
   transition: .25s !important;
@@ -2935,11 +2916,11 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   margin-inline-end: calc(-1 * var(--tab-close-button-padding)) !important;
 }
 
-.tab-icon-overlay {
+.tabbrowser-tab:not([pinned]) .tab-icon-overlay {
   display: none !important;
 }
 
-.tab-audio-button:is([soundplaying], [muted], [activemedia-blocked]) {
+.tabbrowser-tab:not([pinned]) .tab-audio-button:is([soundplaying], [muted], [activemedia-blocked]) {
   display: block !important;
   background-repeat: no-repeat;
   background-position: center;
@@ -3001,6 +2982,28 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 @media -moz-pref("sidebar.visibility", "expand-on-hover") {
 .tabbrowser-tab[pinned] .tab-content {
   margin-left: -6px !important;
+}
+
+.tabbrowser-tab[pinned] .tab-icon-overlay {
+  display: none !important;
+}
+
+.tabbrowser-tab[pinned] .tab-audio-button:is([soundplaying], [muted], [activemedia-blocked]) {
+  display: block !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  -moz-context-properties: fill, fill-opacity;
+  fill: currentColor;
+  fill-opacity: .6;
+&[soundplaying] {
+  background-image: url("chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg");
+}
+&[muted] {
+  background-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
+}
+&[activemedia-blocked] {
+  background-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-circle-12.svg");
+}
 }
 }
 }
@@ -3295,28 +3298,6 @@ tab-group[collapsed] > .tab-group-label-container > & {
   display: block !important;
 }
 
-.tab-icon-overlay {
-  display: none !important;
-}
-
-.tab-audio-button:is([soundplaying], [muted], [activemedia-blocked]) {
-  display: block !important;
-  background-repeat: no-repeat;
-  background-position: center;
-  -moz-context-properties: fill, fill-opacity;
-  fill: currentColor;
-  fill-opacity: .6;
-&[soundplaying] {
-  background-image: url("chrome://browser/skin/tabbrowser/tab-audio-playing-small.svg");
-}
-&[muted] {
-  background-image: url("chrome://browser/skin/tabbrowser/tab-audio-muted-small.svg");
-}
-&[activemedia-blocked] {
-  background-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-circle-12.svg");
-}
-}
-
 @media (-moz-platform: windows) {
 tab > stack {
   margin: 0 .5px !important;
@@ -3493,7 +3474,7 @@ tab > stack {
 }
 
 #nav-bar {
-  z-index: 9;
+  z-index: 10;
   margin-top: -39px !important;
 @media (-moz-platform: windows) {
   margin-top: -38px !important;
@@ -3700,10 +3681,6 @@ tab-group[collapsed] > .tab-group-label-container > & {
   transition: left .25s !important;
 }
 
-.titlebar-buttonbox::before {
-  width: 0;
-}
-
 #urlbar:not([breakout][breakout-extend])[persistsearchterms] {
   width: 220px !important;
   position: fixed;
@@ -3799,6 +3776,15 @@ tab-group[collapsed] > .tab-group-label-container > & {
 :has(#urlbar[breakout][breakout-extend], [usertyping]) {
 .titlebar-buttonbox::after {
   content: none;
+}
+
+.titlebar-buttonbox::before {
+  content: "";
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 40px;
+  height: 40px;
 }
 }
 
