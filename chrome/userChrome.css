@@ -217,15 +217,20 @@
   position: fixed !important;
   left: 7px;
   top: 15.5px;
-@media (-moz-platform: windows) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_win") {
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   left: unset;
   right: 0;
   top: 1px;
-
+@media (-moz-platform: windows) {
 .titlebar-button {
   padding-top: 17px !important;
   padding-bottom: 18px !important;
+}
+}
+@media (-moz-platform: linux) {
+  right: 8px;
+  top: 10px;
 }
 }
 }
@@ -244,8 +249,8 @@
   width: fit-content !important;
   grid-area: 2 / 1 / auto / auto;
   padding-left: 76px !important;
-@media (-moz-platform: windows) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_win") {
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   padding-left: 0 !important;
 }
 }
@@ -259,17 +264,23 @@
   grid-area: 2 / 2 / auto / auto;
   padding-inline-end: 77px !important;
   margin-bottom: 5.5px !important;
-@media (-moz-platform: windows) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_win") {
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   padding-inline-end: 212px !important;
+@media (-moz-platform: linux) {
+  padding-inline-end: 172px !important;
+}
 }
 }
 
 :has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
   padding-inline-end: 111px !important;
-@media (-moz-platform: windows) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_win") {
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   padding-inline-end: 246px !important;
+@media (-moz-platform: linux) {
+  padding-inline-end: 206px !important;
+}
 }
 }
 }
@@ -282,9 +293,12 @@
 #PanelUI-menu-button {
   position: fixed;
   inset-inline-end: 3px;
-@media (-moz-platform: windows) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_win") {
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 138px;
+@media (-moz-platform: linux) {
+  inset-inline-end: 98px;
+}
 }
 }
 }
@@ -292,9 +306,12 @@
 #nav-bar-overflow-button {
   position: fixed;
   inset-inline-end: 43px;
-@media (-moz-platform: windows) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_win") {
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 178px;
+@media (-moz-platform: linux) {
+  inset-inline-end: 138px;
+}
 }
 }
 }
@@ -303,17 +320,23 @@
   position: fixed;
   display: flex !important;
   inset-inline-end: 43px;
-@media (-moz-platform: windows) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_win") {
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 178px;
+@media (-moz-platform: linux) {
+  inset-inline-end: 138px;
+}
 }
 }
 
 :has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
   inset-inline-end: 77px;
-@media (-moz-platform: windows) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_win") {
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 212px;
+@media (-moz-platform: linux) {
+  inset-inline-end: 172px;
+}
 }
 }
 }
@@ -338,6 +361,7 @@
 }
 
 .urlbar-revert-button,
+.searchmode-switcher,
 #urlbar-searchmode-switcher {
   height: 28px !important;
   width: 28px !important;
@@ -347,21 +371,24 @@
 }
 }
 
+.searchmode-switcher-dropmarker,
 #searchmode-switcher-dropmarker {
   display: none !important;
 }
 
+.searchmode-switcher-chicklet,
 #searchmode-switcher-chicklet {
   height: 28px !important;
   border-radius: 16px !important;
 }
 
+#urlbar[usertyping] .searchmode-switcher-chicklet,
 #urlbar[usertyping] #searchmode-switcher-chicklet {
   margin-left: 7px !important;
 }
 
 #urlbar[breakout][breakout-extend]:not([usertyping]) {
-#urlbar-searchmode-switcher {
+.searchmode-switcher, #urlbar-searchmode-switcher {
   display: none !important;
 }
 
@@ -400,18 +427,21 @@
   border-radius: 6px !important;
 }
 
-#urlbar-input::placeholder,
+.urlbar-input::placeholder,
 .searchbar-textbox::placeholder {
-  font-size: 12.5px !important;
   text-align: left !important;
+  font-size: 12.5px !important;
 }
 
-#urlbar-input {
+.urlbar-input {
   text-align: center !important;
   margin-bottom: 1px !important;
+@media (-moz-platform: linux) {
+  font-size: 13px !important;
+}
 }
 
-.urlbar-input-container[pageproxystate="invalid"] #urlbar-input {
+.urlbar-input-container[pageproxystate="invalid"] .urlbar-input {
   mask-image: linear-gradient(to left, transparent, #fff 10ch);
   text-align: left !important;
 }
@@ -437,6 +467,8 @@
 #urlbar:not([breakout][breakout-extend]) {
   transform: none !important;
 
+.searchmode-switcher-close,
+.searchmode-switcher-title,
 #searchmode-switcher-close,
 #searchmode-switcher-title {
   display: none !important;
@@ -455,8 +487,8 @@
   margin-top: 25px !important;
   transition: margin .25s !important;
 
-#urlbar-input,
-#urlbar-input::placeholder {
+.urlbar-input,
+.urlbar-input::placeholder {
   font-size: 21px !important;
 }
 
@@ -490,6 +522,7 @@
   margin-top: 13px !important;
 }
 
+.searchmode-switcher-title,
 #searchmode-switcher-title {
   margin-left: 10px !important;
 }
@@ -537,8 +570,8 @@
 }
 }
 
-#urlbar-input,
-#urlbar-input::placeholder {
+.urlbar-input,
+.urlbar-input::placeholder {
   text-align: left !important;
 }
 
@@ -547,8 +580,8 @@
   height: unset !important;
 }
 
-#urlbar-input,
-#urlbar-input::placeholder {
+.urlbar-input,
+.urlbar-input::placeholder {
   text-align: left !important;
 }
 }
@@ -562,7 +595,7 @@
 }
 }
 
-#urlbar-input {
+.urlbar-input {
   font-size: 21px !important;
 }
 
@@ -575,7 +608,7 @@
   margin-top: 13px !important;
 }
 
-#urlbar-searchmode-switcher {
+.searchmode-switcher, #urlbar-searchmode-switcher {
   margin-top: 10px !important;
 }
 }
@@ -605,6 +638,7 @@
 
 :has(#urlbar[breakout][breakout-extend]) {
 .urlbar-revert-button,
+.searchmode-switcher,
 #urlbar-searchmode-switcher {
   margin-top: 10px !important;
 }
@@ -613,6 +647,7 @@
 :has(#identity-box[pageproxystate="valid"].extensionPage) {
 .urlbar-page-action,
 .identity-box-button,
+.searchmode-switcher,
 #urlbar-searchmode-switcher,
 #tracking-protection-icon-container {
   display: none !important;
@@ -631,7 +666,7 @@
 }
 }
 
-.urlbar-input-container[pageproxystate="valid"] #urlbar-input {
+.urlbar-input-container[pageproxystate="valid"] .urlbar-input {
   text-align: left !important;
 }
 
@@ -1970,10 +2005,6 @@ richlistitem {
 }
 }
 
-#nav-bar {
-  padding-left: 76px !important;
-}
-
 #context-navigation .menu-icon {
   display: unset;
 }
@@ -2002,13 +2033,25 @@ menupopup {
   background: var(--bg1) !important;
 }
 
+@media -moz-pref("sidebar.verticalTabs") {
+@media not -moz-pref("gwfox.plus") {
 .titlebar-buttonbox-container {
-  position: absolute !important;
+  margin-top: -5px;
+  margin-right: 8px;
+}
+}
+}
+
+@media -moz-pref("gwfox.plus") {
+@media not -moz-pref("gwfox.plus_sc") {
+#nav-bar {
+  padding-left: 76px !important;
+}
+
+.titlebar-buttonbox-container {
+  position: fixed !important;
   left: 15px;
   top: 15.5px;
-@media -moz-pref("gwfox.plus") {
-  position: fixed !important;
-}
 }
 
 .titlebar-button {
@@ -2079,6 +2122,8 @@ menupopup {
 }
 }
 }
+}
+}
 
 /* icons */
 
@@ -2140,6 +2185,7 @@ menupopup {
   fill: currentColor;
 }
 
+.searchmode-switcher-icon,
 #searchmode-switcher-icon {
   fill: light-dark(#525252, #c9c9cb) !important;
 &:not([style*=".svg"]) {
@@ -2834,6 +2880,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 
 .urlbar-revert-button,
+.searchmode-switcher,
 #urlbar-searchmode-switcher {
   margin-top: 1px !important;
 }
@@ -2848,7 +2895,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   border-radius: 8px;
   background: var(--button-active-bgcolor);
   pointer-events: none;
-@media (-moz-platform: windows) {
+@media not (-moz-platform: macos) {
   background: light-dark(rgba(120, 120, 120, .1), rgba(155, 155, 155, .2));
 }
 }
@@ -3233,7 +3280,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #urlbar:not([breakout][breakout-extend])[persistsearchterms] {
   width: 62px !important;
 
-#urlbar-searchmode-switcher {
+.searchmode-switcher, #urlbar-searchmode-switcher {
   margin-left: 16px !important;
   margin-right: 16px !important;
 }
@@ -3243,6 +3290,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   width: 82px;
 }
 
+#urlbar:not([breakout][breakout-extend], [usertyping]) .searchmode-switcher,
 #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher {
   margin-left: 16px !important;
   margin-right: 16px !important;
@@ -3290,6 +3338,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 --display: none;
 }
 
+#urlbar:not([breakout][breakout-extend], [usertyping]) .searchmode-switcher,
 #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher {
   margin-left: 0 !important;
   margin-right: 6px !important;
@@ -3811,12 +3860,13 @@ tab-group[collapsed] > .tab-group-label-container > & {
   top: 55px !important;
   left: -258px !important;
   opacity: 0;
-#urlbar-searchmode-switcher {
+.searchmode-switcher, #urlbar-searchmode-switcher {
   margin-left: unset !important;
   margin-right: unset !important;
 }
 }
 
+#urlbar:not([breakout][breakout-extend], [usertyping]) .searchmode-switcher,
 #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher {
   margin-left: unset !important;
   margin-right: 7px !important;
@@ -3918,7 +3968,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 --display: none;
 }
 
-:has(#sidebar-main:hover, #urlbar:not([breakout][breakout-extend])[persistsearchterms]:hover, #urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-box > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-permission-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #notification-popup-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #tracking-protection-icon-container[open], .tab-throbber[busy], #tab-group-name:focus, .titlebar-buttonbox:hover, toolbarbutton:is(#sidebar-button, #reload-button, #stop-button, #back-button, #forward-button, #PanelUI-menu-button, #nav-bar-overflow-button, #unified-extensions-button, #downloads-button):hover, #PanelUI-menu-button[open], #nav-bar-overflow-button[open], #unified-extensions-button[open], #downloads-button[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher[open]) {
+:has(#sidebar-main:hover, #urlbar:not([breakout][breakout-extend])[persistsearchterms]:hover, #urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-box > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-permission-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #notification-popup-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #tracking-protection-icon-container[open], .tab-throbber[busy], #tab-group-name:focus, .titlebar-buttonbox:hover, toolbarbutton:is(#sidebar-button, #reload-button, #stop-button, #back-button, #forward-button, #PanelUI-menu-button, #nav-bar-overflow-button, #unified-extensions-button, #downloads-button):hover, #PanelUI-menu-button[open], #nav-bar-overflow-button[open], #unified-extensions-button[open], #downloads-button[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher[open], #urlbar:not([breakout][breakout-extend], [usertyping]) .searchmode-switcher[open]) {
 .titlebar-buttonbox-container {
   left: 7px;
   opacity: 1;
@@ -4105,88 +4155,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-@media -moz-pref("gwfox.plus_win") {
-@media -moz-pref("sidebar.verticalTabs") {
-.titlebar-buttonbox-container {
-  position: unset !important;
-}
-
-.titlebar-buttonbox {
-&::before {
-  content: none !important;
-}
-}
-
-#sidebar-box {
-  margin-top: 0 !important;
-}
-
-:root:not([inDOMFullscreen]) {
-#nav-bar {
-  margin-left: 18px !important;
-}
-
-:has(#sidebar-box:not([hidden])),
-:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
-#tabbrowser-tabpanels {
-  margin-top: 0 !important;
-}
-}
-}
-
-:root:not([chromehidden~="toolbar"], [customizing]):has(#sidebar-main[hidden]) {
-.titlebar-button {
-  padding: 0 2px !important;
-  scale: .78;
-  background-color: transparent !important;
-}
-
-.titlebar-buttonbox {
-&::before {
-  z-index: -1;
-}
-}
-}
-
-:has(.titlebar-buttonbox:hover) {
-#tabbrowser-tabpanels {
-  margin-top: 0 !important;
-}
-}
-
-:has(#tabbrowser-tabs[expanded]) {
-:has(#sidebar-box:not([hidden])),
-:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
-#nav-bar .toolbarbutton-1:nth-child(5) {
-  margin-left: 0 !important;
-}
-}
-}
-
-:has(#tabbrowser-tabs:not([expanded])) {
-#nav-bar .toolbarbutton-1:first-child {
-  margin-right: 20px !important;
-}
-
-:has(#sidebar-box:not([hidden])),
-:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
-#nav-bar {
-  padding-left: 0 !important;
-}
-}
-}
-
-@media -moz-pref("sidebar.visibility", "expand-on-hover") {
-:has(#back-button:hover, #forward-button:hover, #reload-button:hover, #stop-button:hover, #sidebar-button:hover, #urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-box > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-permission-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #notification-popup-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #tracking-protection-icon-container[open], #tab-group-name:focus) {
-#nav-bar .toolbarbutton-1:first-child {
-  margin-right: 0 !important;
-}
-}
-}
-}
-}
-
-@media not -moz-pref("gwfox.plus_win") {
+@media not -moz-pref("gwfox.plus_sc") {
 .titlebar-buttonbox-container {
   left: 15px;
   top: 17.5px;
@@ -4290,6 +4259,97 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 @media -moz-pref("sidebar.verticalTabs") {
   top: 10px;
+}
+}
+
+@media -moz-pref("gwfox.plus_sc") {
+@media -moz-pref("sidebar.verticalTabs") {
+#toolbar-menubar {
+.titlebar-buttonbox-container {
+  visibility: collapse;
+}
+}
+
+.titlebar-buttonbox-container {
+  position: unset !important;
+@media (-moz-platform: linux) {
+  margin-top: -5px !important;
+  margin-right: 8px;
+}
+}
+
+.titlebar-buttonbox {
+&::before {
+  content: none !important;
+}
+}
+
+#sidebar-box {
+  margin-top: 0 !important;
+}
+
+:root:not([inDOMFullscreen]) {
+#nav-bar {
+  margin-left: 18px !important;
+}
+
+:has(#sidebar-box:not([hidden])),
+:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
+#tabbrowser-tabpanels {
+  margin-top: 0 !important;
+}
+}
+}
+
+:root:not([chromehidden~="toolbar"], [customizing]):has(#sidebar-main[hidden]) {
+.titlebar-button {
+  padding: 0 2px !important;
+  scale: .78;
+  background-color: transparent !important;
+}
+
+.titlebar-buttonbox {
+&::before {
+  z-index: -1;
+}
+}
+}
+
+:has(.titlebar-buttonbox:hover) {
+#tabbrowser-tabpanels {
+  margin-top: 0 !important;
+}
+}
+
+:has(#tabbrowser-tabs[expanded]) {
+:has(#sidebar-box:not([hidden])),
+:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
+#nav-bar .toolbarbutton-1:nth-child(5) {
+  margin-left: 0 !important;
+}
+}
+}
+
+:has(#tabbrowser-tabs:not([expanded])) {
+#nav-bar .toolbarbutton-1:first-child {
+  margin-right: 20px !important;
+}
+
+:has(#sidebar-box:not([hidden])),
+:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
+#nav-bar {
+  padding-left: 0 !important;
+}
+}
+}
+
+@media -moz-pref("sidebar.visibility", "expand-on-hover") {
+:has(#back-button:hover, #forward-button:hover, #reload-button:hover, #stop-button:hover, #sidebar-button:hover, #urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-box > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-permission-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #notification-popup-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #tracking-protection-icon-container[open], #tab-group-name:focus) {
+#nav-bar .toolbarbutton-1:first-child {
+  margin-right: 0 !important;
+}
+}
+}
 }
 }
 }
