@@ -229,8 +229,7 @@
 }
 }
 @media (-moz-platform: linux) {
-  right: 8px;
-  top: 10px;
+  top: 11px;
 }
 }
 }
@@ -268,7 +267,7 @@
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   padding-inline-end: 212px !important;
 @media (-moz-platform: linux) {
-  padding-inline-end: 172px !important;
+  padding-inline-end: 187px !important;
 }
 }
 }
@@ -279,7 +278,7 @@
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   padding-inline-end: 246px !important;
 @media (-moz-platform: linux) {
-  padding-inline-end: 206px !important;
+  padding-inline-end: 221px !important;
 }
 }
 }
@@ -297,7 +296,7 @@
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 138px;
 @media (-moz-platform: linux) {
-  inset-inline-end: 98px;
+  inset-inline-end: 113px;
 }
 }
 }
@@ -310,7 +309,7 @@
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 178px;
 @media (-moz-platform: linux) {
-  inset-inline-end: 138px;
+  inset-inline-end: 153px;
 }
 }
 }
@@ -324,7 +323,7 @@
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 178px;
 @media (-moz-platform: linux) {
-  inset-inline-end: 138px;
+  inset-inline-end: 153px;
 }
 }
 }
@@ -335,7 +334,7 @@
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 212px;
 @media (-moz-platform: linux) {
-  inset-inline-end: 172px;
+  inset-inline-end: 187px;
 }
 }
 }
@@ -2029,6 +2028,32 @@ menupopup {
   margin: -18px -18px -5px !important;
 }
 
+menuitem[type="checkbox"] image, menuitem[type="radio"] image {
+  appearance: none !important;
+}
+
+menuitem[type="checkbox"][checked="true"] {
+  list-style-image: url("resources/check.svg") !important;
+}
+
+menuitem[type="radio"][checked="true"] {
+  list-style-image: url("resources/radio.svg") !important;
+}
+
+menuitem[type="radio"] .menu-icon {
+  border-radius: 50%;
+  border: 2px solid rgba(165, 165, 165, .8);
+}
+
+menuitem[type="radio"][checked="true"] .menu-icon {
+  background-color: light-dark(#4481f2, #1280fd);
+  border: none;
+}
+
+menuitem[type="radio"][disabled="true"] .menu-icon {
+  opacity: .5;
+}
+
 #customization-container {
   background: var(--bg1) !important;
 }
@@ -2036,8 +2061,7 @@ menupopup {
 @media -moz-pref("sidebar.verticalTabs") {
 @media not -moz-pref("gwfox.plus") {
 .titlebar-buttonbox-container {
-  margin-top: -5px;
-  margin-right: 8px;
+  padding-bottom: 2px;
 }
 }
 }
@@ -2193,16 +2217,6 @@ menupopup {
 }
 }
 
-@media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.plus") {
-#toolbar-menubar {
-.titlebar-buttonbox-container {
-  visibility: collapse;
-}
-}
-}
-}
-
 /* verticalTabs */
 
 @media -moz-pref("sidebar.revamp") {
@@ -2271,7 +2285,7 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
 }
 
 .actions-list {
-  display: var(--display, inherit) !important;
+  display: var(--dp, inherit) !important;
 &:has(.expanded-button) {
   display: flex !important;
 }
@@ -2287,7 +2301,7 @@ button:has([src="chrome://global/skin/icons/settings.svg"]) {
 }
 
 #sidebar-tools-and-extensions-splitter {
-  display: var(--display) !important;
+  display: var(--dp) !important;
   width: 10px !important;
   margin-inline: auto !important;
   margin-block-start: 15px !important;
@@ -2446,6 +2460,7 @@ tab-group > .tabbrowser-tab,
 
 :has(#tabbrowser-tabs[expanded]) {
   --mtb: none;
+  --dp: flex;
 
 #sidebar-main {
   min-width: 221px !important;
@@ -3335,7 +3350,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 @media -moz-pref("sidebar.visibility", "expand-on-hover") {
 :has(#back-button:hover, #forward-button:hover, #reload-button:hover, #stop-button:hover, #sidebar-button:hover, #urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-box > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-permission-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #notification-popup-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #tracking-protection-icon-container[open], #tab-group-name:focus) {
 :has(#tabbrowser-tabs:not([expanded])) {
---display: none;
+--dp: none;
 }
 
 #urlbar:not([breakout][breakout-extend], [usertyping]) .searchmode-switcher,
@@ -3810,7 +3825,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   box-sizing: border-box !important;
   padding: var(--tab-close-button-padding) !important;
   border-radius: var(--tab-border-radius) !important;
-  list-style-image: url(chrome://global/skin/icons/close-12.svg), url(resource://content-accessible/close-12.svg) !important;
+  list-style-image: url("data:image/svg+xml,%3Csvg width='12' height='12' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.116 6 2 9.116l.884.884L6 6.884 9.116 10 10 9.116 6.884 6 10 2.884 9.116 2 6 5.116 2.884 2 2 2.884 5.116 6z'/%3E%3C/svg%3E") !important;
   box-shadow: unset !important;
   background-image: linear-gradient(var(--close-button-extra-background)) !important;
 
@@ -3965,7 +3980,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 
 :has(#tabbrowser-tabs:not([expanded])) {
---display: none;
+--dp: none;
 }
 
 :has(#sidebar-main:hover, #urlbar:not([breakout][breakout-extend])[persistsearchterms]:hover, #urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-box > *[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #identity-permission-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #notification-popup-box[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #tracking-protection-icon-container[open], .tab-throbber[busy], #tab-group-name:focus, .titlebar-buttonbox:hover, toolbarbutton:is(#sidebar-button, #reload-button, #stop-button, #back-button, #forward-button, #PanelUI-menu-button, #nav-bar-overflow-button, #unified-extensions-button, #downloads-button):hover, #PanelUI-menu-button[open], #nav-bar-overflow-button[open], #unified-extensions-button[open], #downloads-button[open], #urlbar:not([breakout][breakout-extend], [usertyping]) #urlbar-searchmode-switcher[open], #urlbar:not([breakout][breakout-extend], [usertyping]) .searchmode-switcher[open]) {
@@ -4273,8 +4288,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 .titlebar-buttonbox-container {
   position: unset !important;
 @media (-moz-platform: linux) {
-  margin-top: -5px !important;
-  margin-right: 8px;
+  padding-bottom: 2px;
 }
 }
 
@@ -4390,11 +4404,33 @@ tab-group[collapsed] > .tab-group-label-container > & {
 #PersonalToolbar {
   margin: 0 !important;
   width: 100% !important;
+@media not (-moz-platform: linux) {
   border-radius: 0 !important;
+}
 }
 
 #statuspanel-label {
+@media not (-moz-platform: linux) {
   border-radius: 0 !important;
+}
+}
+
+:has(#sidebar-main:not([hidden])) {
+#PersonalToolbar {
+  width: calc(100% - 50px) !important;
+}
+}
+
+:has(#sidebar-box:not([hidden])) {
+#PersonalToolbar {
+  width: calc(100% - 330px) !important;
+}
+}
+
+:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
+#PersonalToolbar {
+  width: calc(100% - 450px) !important;
+}
 }
 }
 }
