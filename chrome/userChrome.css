@@ -14,19 +14,19 @@
   --button-background-color: var(--button-bgcolor) !important;
   --button-background-color-hover: var(--button-hover-bgcolor) !important;
   --button-background-color-active: var(--button-active-bgcolor) !important;
-  --in-content-primary-button-background: light-dark(#0062fa, #1280fd) !important;
-  --in-content-primary-button-background-hover: light-dark(#2477ff, #006bdc) !important;
-  --in-content-primary-button-background-active: light-dark(#3f94ff, #0055bc) !important;
+  --in-content-primary-button-background: light-dark(#007aff, #1280fd) !important;
+  --in-content-primary-button-background-hover: light-dark(#0075dd, #006bdc) !important;
+  --in-content-primary-button-background-active: light-dark(#005ebb, #0055bc) !important;
   --in-content-primary-button-text-color: #fff !important;
   --devtools-splitter-color: transparent !important;
   --button-text-color-primary: #fff !important;
   --button-primary-color: #fff !important;
-  --color-accent-primary: light-dark(#0062fa, #1280fd) !important;
-  --color-accent-primary-hover: light-dark(#2477ff, #006bdc) !important;
-  --color-accent-primary-active: light-dark(#3f94ff, #0055bc) !important;
-  --button-primary-bgcolor: light-dark(#0062fa, #1280fd) !important;
-  --button-primary-hover-bgcolor: light-dark(#2477ff, #006bdc) !important;
-  --button-primary-active-bgcolor: light-dark(#3f94ff, #0055bc) !important;
+  --color-accent-primary: light-dark(#007aff, #1280fd) !important;
+  --color-accent-primary-hover: light-dark(#0075dd, #006bdc) !important;
+  --color-accent-primary-active: light-dark(#005ebb, #0055bc) !important;
+  --button-primary-bgcolor: light-dark(#007aff, #1280fd) !important;
+  --button-primary-hover-bgcolor: light-dark(#0075dd, #006bdc) !important;
+  --button-primary-active-bgcolor: light-dark(#005ebb, #0055bc) !important;
   --in-content-button-background: light-dark(rgba(70, 70, 70, .1), rgba(170, 170, 170, .2)) !important;
   --in-content-button-background-hover: light-dark(rgba(70, 70, 70, .15), rgba(170, 170, 170, .3)) !important;
   --in-content-button-background-active: light-dark(rgba(70, 70, 70, .12), rgba(170, 170, 170, .15)) !important;
@@ -1410,8 +1410,9 @@ toolbarseparator[orient="vertical"] {
 }
 }
 
+.dialogOverlay[topmost="true"],
 #window-modal-dialog::backdrop {
-  background: none !important;
+  background-color: transparent !important;
 }
 
 window[role="dialog"] {
@@ -1439,7 +1440,7 @@ window[role="dialog"] {
 #unified-extensions-view .panel-header,
 #unified-extensions-view .panel-header + toolbarseparator,
 #unified-extensions-view .unified-extensions-item-menu-button.subviewbutton {
-  display:none !important;
+  display: none !important;
 }
 
 #unified-extensions-view {
@@ -2809,6 +2810,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   top: 47px !important;
   max-width: 201px !important;
   -moz-window-dragging: no-drag;
+  z-index: 9;
 &::before {
   content: "";
   position: absolute;
@@ -4253,6 +4255,9 @@ position: fixed !important;
 
 .titlebar-buttonbox-container {
   position: unset !important;
+@media (-moz-platform: windows) {
+  margin-top: -1px !important;
+}
 @media (-moz-platform: linux) {
   padding-bottom: 2px;
 }
