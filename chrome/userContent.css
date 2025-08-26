@@ -137,7 +137,10 @@ input[type="radio"]:not(.wallpaper-input, [name="theme"], [name="avatar"]) {
   border: 2px solid rgba(165, 165, 165, .8) !important;
   &:checked {
   background-color: light-dark(#007aff, #1280fd) !important;
-  content: url("data:image/svg+xml,%3Csvg width='16' height='16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='4'/%3E%3C/svg%3E") !important;
+  background-image: url("chrome://devtools/skin/images/linear-easing-swatch.svg") !important;
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
   -moz-context-properties: fill;
   fill: #fff;
   border: none !important;
@@ -163,7 +166,10 @@ input[type="radio"]:not(.wallpaper-input, [name="theme"], [name="avatar"]) {
   border: 2px solid rgba(165, 165, 165, .8) !important;
   &[selected] {
   background-color: light-dark(#007aff, #1280fd) !important;
-  content: url("data:image/svg+xml,%3Csvg width='16' height='16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='4'/%3E%3C/svg%3E") !important;
+  background-image: url("chrome://devtools/skin/images/linear-easing-swatch.svg") !important;
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
   -moz-context-properties: fill;
   fill: #fff;
   border: none !important;
