@@ -207,8 +207,17 @@
 #browser {
   background: transparent !important;
 @media (-moz-platform: linux) {
+@media -moz-pref("gwfox.bms") {
+  background: rgba(15, 15, 12, .75) !important;
+}
+@media not -moz-pref("gwfox.bms") {
   background: #28282c !important;
 }
+}
+}
+
+#tabbrowser-tabbox browser:not(.devtools-toolbox-bottom-iframe, .devtools-toolbox-side-iframe) {
+  background-color: #191919 !important;
 }
 }
 
@@ -951,6 +960,21 @@
   padding: 7px 0 0 7px !important;
 }
 
+#TabsToolbar #alltabs-button,
+#nav-bar #alltabs-button {
+> .toolbarbutton-badge-stack {
+  height: 30px !important;
+  width: 30px !important;
+  padding: 6px 0 0 6px !important;
+  border-radius: 6px !important;
+> .toolbarbutton-icon {
+  height: 18px !important;
+  width: 18px !important;
+  margin: unset !important;
+}
+}
+}
+
 #page-action-buttons {
   margin-right: 0 !important;
   margin-bottom: 0 !important;
@@ -1071,20 +1095,6 @@ tab .tab-label {
 
 #tabbrowser-tabs[movingtab] {
   margin-bottom: -16px !important;
-}
-
-#alltabs-button {
-> .toolbarbutton-badge-stack {
-  height: 30px !important;
-  width: 30px !important;
-  padding: 6px 0 0 6px !important;
-  border-radius: 6px !important;
-> .toolbarbutton-icon {
-  height: 18px !important;
-  width: 18px !important;
-  margin: unset !important;
-}
-}
 }
 
 .tabbrowser-tab:not([selected]) .tab-close-button {
@@ -1504,7 +1514,12 @@ tree {
 }
 
 :root#main-window {
-  min-width: 590px !important;
+  min-width: 611px !important;
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+  min-width: 701px !important;
+}
+}
 @media (-moz-platform: macos) {
   appearance: -moz-sidebar !important;
 }
@@ -1531,9 +1546,38 @@ tree {
 }
 }
 
-@media (max-width: 590px) {
-#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[pinned] {
-  display: none !important;
+@media (max-width: 611px) {
+@media not -moz-pref("sidebar.verticalTabs") {
+#urlbar-container {
+  margin-left: 30px !important;
+}
+}
+
+#TabsToolbar {
+  visibility: collapse;
+}
+
+.titlebar-buttonbox-container {
+  visibility: visible;
+}
+}
+
+@media not (-moz-platform: macos) {
+@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (max-width: 701px) {
+@media not -moz-pref("sidebar.verticalTabs") {
+#urlbar-container {
+  margin-left: 55px !important;
+@media (-moz-platform: linux) {
+  margin-left: 65px !important;
+}
+}
+}
+
+#TabsToolbar {
+  visibility: collapse;
+}
+}
 }
 }
 
@@ -2240,7 +2284,7 @@ span:active > img:is([src="chrome://browser/skin/history.svg"], [src="chrome://b
 }
 
 .tools-and-extensions {
-  margin-bottom: 6px !important;
+  margin-bottom: 4px !important;
 }
 
 .extensions, .customize-extensions-heading,
@@ -2284,6 +2328,10 @@ span:active > img:is([src="chrome://browser/skin/history.svg"], [src="chrome://b
   transition: .25s !important;
 }
 }
+}
+
+#vertical-tabs-newtab-button {
+  margin-bottom: 6px !important;
 }
 
 #vertical-pinned-tabs-splitter {
@@ -2547,6 +2595,7 @@ tab > stack {
 
 @media -moz-pref("gwfox.plus") {
 :root[sidebar-expand-on-hover] {
+@media not -moz-pref("gwfox.plus_sc") {
 .tabbrowser-tab[pinned] .tab-icon-image {
   margin-left: 6px;
 }
@@ -2562,6 +2611,7 @@ tab > stack {
 #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-close-button, 
 .tabbrowser-tab[pinned] .tab-close-button {
   display: none !important;
+}
 }
 
 #tabbrowser-tabbox {
@@ -2612,6 +2662,7 @@ tab > stack {
 }
 }
 
+@media not -moz-pref("gwfox.plus_sc") {
 #tabbrowser-tabs:is([orient="horizontal"], [expanded]):not([movingtab]) .tab-icon-stack {
 .tabbrowser-tab:hover .tab-content > &:not([pinned]) {
   display: none;
@@ -2688,6 +2739,7 @@ tab > stack {
 @media -moz-pref("sidebar.visibility", "expand-on-hover") {
 .tabbrowser-tab:not([pinned]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label-container {
   margin-left: 0 !important;
+}
 }
 }
 }
@@ -2955,10 +3007,6 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   opacity: .5 !important;
 }
 
-.tabbrowser-tab .tab-label-container {
-  margin-left: 1px;
-}
-
 .tab-background {
   border-radius: 8px !important;
 }
@@ -2967,8 +3015,14 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   background: transparent !important;
 }
 
+@media not -moz-pref("gwfox.plus_sc") {
+.tabbrowser-tab .tab-label-container {
+  margin-left: 1px;
+}
+
 .tabbrowser-tab:not([pinned]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label-container {
   margin-left: 6.5px;
+}
 }
 
 .tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
@@ -3030,6 +3084,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 :has(#tabbrowser-tabs[expanded]) {
   --padding: 0;
 
+@media not -moz-pref("gwfox.plus_sc") {
 .tab-close-button {
   margin-inline-end: calc(-1 * var(--tab-close-button-padding)) !important;
 }
@@ -3053,6 +3108,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 &[activemedia-blocked] {
   background-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-circle-12.svg");
+}
 }
 }
 
@@ -3107,6 +3163,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 }
 
+@media not -moz-pref("gwfox.plus_sc") {
 @media -moz-pref("sidebar.visibility", "expand-on-hover") {
 .tabbrowser-tab[pinned] .tab-content {
   margin-left: -6px !important;
@@ -3131,6 +3188,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 &[activemedia-blocked] {
   background-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-circle-12.svg");
+}
 }
 }
 }
@@ -3841,12 +3899,12 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-.tabbrowser-tab:not([pinned]):hover .tab-icon-image {
-  opacity: 0;
+.tabbrowser-tab .tab-label-container {
+  margin-left: 1px;
 }
 
-.tabbrowser-tab:not([pinned]):hover .tab-label-container {
-  margin-left: 1px;
+.tabbrowser-tab:not([pinned]):hover .tab-icon-image {
+  opacity: 0;
 }
 
 .tabbrowser-tab:not([pinned]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label-container {
