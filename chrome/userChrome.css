@@ -1293,10 +1293,10 @@ panel[type="arrow"] {
 
 @keyframes panel-grow {
   0% {
-    transform: scaleX(.96) scaleY(.95);
+    transform: scale(.92);
   }
   100% {
-    transform: scale(1.0);
+    transform: scale(1);
   }
 }
 
@@ -1320,11 +1320,6 @@ panel[type="arrow"] {
     translate: 0;
     opacity: 1;
   }
-}
-
-panelmultiview, popupnotification {
-  animation-name: panel-grow;
-  animation-duration: 250ms;
 }
 
 .panel-arrowcontent {
@@ -3750,6 +3745,7 @@ tab > stack {
   bottom: 16px;
   left: -258px;
   opacity: 0;
+  scale: .9;
   transition: left .25s !important;
 }
 
@@ -3789,15 +3785,17 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-#tabbrowser-tabs,
-#tabs-newtab-button,
-#vertical-tabs-newtab-button {
+#tabbrowser-tabs {
   width: 221px !important;
+&[overflow]::after {
+  content: none !important;
+}
 }
 
 #tabs-newtab-button,
 #vertical-tabs-newtab-button {
-  margin-left: 9px !important;
+  width: 201px !important;
+  margin-left: 10px !important;
 }
 
 #tabbrowser-tabs .toolbarbutton-text {
@@ -4048,6 +4046,13 @@ tab-group[collapsed] > .tab-group-label-container > & {
   width: 40px;
   height: 40px;
 }
+
+#sidebar-button, #reload-button, #stop-button, #back-button,
+#forward-button, #PanelUI-menu-button, #nav-bar-overflow-button,
+#unified-extensions-button, #downloads-button, #sidebar-main,
+.titlebar-buttonbox-container {
+  display: none !important;
+}
 }
 
 :has(#tabbrowser-tabs:not([expanded])) {
@@ -4094,21 +4099,21 @@ tab-group[collapsed] > .tab-group-label-container > & {
 #PanelUI-menu-button,
 #nav-bar-overflow-button,
 #unified-extensions-button {
-  left: 20px;
+  left: 45px;
   opacity: 1;
   transition: left .25s !important;
 }
 
 #nav-bar-overflow-button {
-  left: 72px;
+  left: 83px;
 }
 
 #unified-extensions-button {
-  left: 123px;
+  left: 119.5px;
 }
 
 #downloads-button {
-  left: 175px;
+  left: 157px;
 }
 
 #sidebar-main {
