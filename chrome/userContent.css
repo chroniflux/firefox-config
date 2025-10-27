@@ -26,10 +26,6 @@
   --checkbox-checked-bgcolor: light-dark(#007aff, #1280fd) !important;
   --checkbox-checked-hover-bgcolor: light-dark(#0075dd, #006bdc) !important;
   --checkbox-checked-active-bgcolor: light-dark(#005ebb, #0055bc) !important;
-  --link-color: light-dark(#007aff, #1280fd) !important;
-  --link-color-hover: light-dark(#0075dd, #006bdc) !important;
-  --link-color-active: light-dark(#005ebb, #0055bc) !important;
-  --link-color-visited: light-dark(#007aff, #1280fd) !important;
   --brand-color-accent: light-dark(#007aff, #1280fd) !important;
   --brand-color-accent-hover: light-dark(#0075dd, #006bdc) !important;
   --brand-color-accent-active: light-dark(#005ebb, #0055bc) !important;
@@ -40,6 +36,10 @@
   --bg4: light-dark(rgba(255, 255, 255, .75), rgba(15, 15, 12, .75));
   --bs1: 0 5px 15px rgba(0, 0, 0, .2), 0 0 0 .5px rgba(0, 0, 0, .15);
   --bs2: 0 5px 15px rgba(0, 0, 0, .25), 0 0 0 .5px rgba(0, 0, 0, .5);
+  @media (-moz-mac-tahoe-theme) {
+  --bs1: 0 5px 15px rgba(0, 0, 0, .2), 0 0 0 1px rgba(0, 0, 0, .2);
+  --bs2: 0 5px 15px rgba(0, 0, 0, .25), 0 0 0 1px rgba(0, 0, 0, .4);
+  }
   @media (-moz-platform: windows) {
   --bs1: 0 45px 65px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0, 0, 0, .17);
   --bs2: 0 45px 65px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .15);    
@@ -205,6 +205,15 @@ input[type="radio"]:not(.wallpaper-input, [name="theme"], [name="avatar"]) {
 }
 }
 
+@-moz-document url-prefix(about:) {
+:root {
+  --link-color: light-dark(#007aff, #1280fd) !important;
+  --link-color-hover: light-dark(#0075dd, #006bdc) !important;
+  --link-color-active: light-dark(#005ebb, #0055bc) !important;
+  --link-color-visited: light-dark(#007aff, #1280fd) !important;
+}
+}
+
 @-moz-document url-prefix("about:firefoxview") {
 * {--fxview-border: transparent !important;}
 
@@ -324,7 +333,10 @@ body {
 .context-menu {
   border-radius: 6px !important;
   padding: 6px !important;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .2), 0 0 0 .5px rgba(0, 0, 0, .15) !important;
+  box-shadow: var(--bs1) !important;
+@media (-moz-mac-tahoe-theme) {
+  border-radius: 12px !important;
+}
 @media (-moz-platform: windows) {
   box-shadow: 0 15px 25px rgba(0, 0, 0, .25), 0 0 0 1px rgba(0, 0, 0, .17) !important;
 }
@@ -486,6 +498,9 @@ body {
 
 .customize-menu {
   border-radius: 8px !important;
+@media (-moz-mac-tahoe-theme) {
+  border-radius: 12px !important;
+}
 }
 
 .tile, .context-menu-button.icon {
@@ -575,7 +590,7 @@ body {
 
 .context-menu {
   border: 1px solid rgba(235, 245, 255, .15) !important;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .25), 0 0 0 .5px rgba(0, 0, 0, .5) !important;
+  box-shadow: var(--bs2) !important;
 }
 }
 
@@ -685,6 +700,9 @@ body {
   animation-name: panel-grow;
   animation-duration: 250ms;
   background-color: var(--bg4) !important;
+@media (-moz-mac-tahoe-theme) {
+  border-radius: 12px !important;
+}
 @media (-moz-platform: linux) {
 @media not -moz-pref("gwfox.bms") {
   background-color: light-dark(#fff, #36363a) !important;
