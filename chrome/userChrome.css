@@ -253,7 +253,7 @@
   background: transparent !important;
 @media (-moz-platform: linux) {
 @media -moz-pref("gwfox.bms") {
-  background: rgba(15, 15, 12, .75) !important;
+  background: rgba(40, 40, 44, .76) !important;
 }
 @media not -moz-pref("gwfox.bms") {
   background: #28282c !important;
@@ -682,7 +682,6 @@
 
 :has(#urlbar[usertyping]:not([persistsearchterms])[focused]) {
 #urlbar {
-  position: fixed !important;
   top: 19vh !important;
   left: 29vw !important;
   width: 45vw !important;
