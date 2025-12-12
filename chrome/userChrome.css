@@ -995,7 +995,6 @@
 #reset-pbm-toolbar-button, #taskbar-tabs-button,
 #firefox-view-button, #fxa-toolbar-menu-button,
 #userContext-icons, #userContext-label,
-#scrollbutton-up, #scrollbutton-down,
 .sharing-icon, #save-to-pocket-button {
   display: none !important;
 }
@@ -1728,7 +1727,7 @@ tree {
 }
 @media (-moz-platform: linux) {
 @media (prefers-color-scheme: dark) {
-  &::before {
+  &:not([chromehidden~="toolbar"])::before {
   content: "";
   position: absolute;
   top: 0;
@@ -3153,6 +3152,12 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 @media (-moz-mac-tahoe-theme) {
   border-top-left-radius: 11px !important;
   border-top-right-radius: 11px !important;
+}
+}
+@media (-moz-platform: linux) {
+@media not -moz-pref("gwfox.bms") {
+  background-color: var(--bg2) !important;
+  backdrop-filter: blur(0px) !important;
 }
 }
   transform: rotateX(90deg);

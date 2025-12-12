@@ -572,32 +572,8 @@ body {
   padding: unset !important;
 }
 
-.edit-topsites-wrapper .top-site-inner > .top-site-button {
-  background: none !important;
-  box-shadow: none !important;
-}
-
-.edit-topsites-wrapper .top-site-inner > .top-site-button > .tile {
-  border: none !important;
-  border-radius: 18px !important;
-  box-shadow: none !important;
-  width: 96px !important;
-  height: 96px !important;
-  background-color: light-dark(rgba(70, 70, 70, .1), rgba(170, 170, 170, .2)) !important;
-@media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
-  background-color: light-dark(#fff, #36363a) !important;
-}
-}
-}
-
-.edit-topsites-wrapper .icon-wrapper {
-  width: 64px !important;
-  height: 64px !important;
-}
-
-.edit-topsites-wrapper * {
-  text-decoration: none !important;
+.edit-topsites-wrapper .top-site-outer {
+  display: none !important;
 }
 
 .context-menu-button.icon {
@@ -681,6 +657,11 @@ body {
 
 .customize-menu-animate-wrapper {
   box-shadow: none !important;
+:has(.category.wallpaper-list) {
+.category-header, .category-list, ~ * {
+  display: none !important;
+}
+}
 }
 
 .context-menu, .contentSearchSuggestionTable, .location-input-wrapper, .weatherInfoLink, .weatherNotAvailable, .personalize-button {
@@ -695,12 +676,13 @@ body {
 }
 
 .wallpaper-list.category {
-  background-color: light-dark(rgba(255, 255, 255, .95), rgba(55, 55, 55, .95)) !important;
   margin: 0 !important;
   width: 100% !important;
   height: 100% !important;
   inset-inline-start: 0 !important;
   padding: 10px !important;
+  transition: none !important;
+  animation: .25s ease-in panel-grow;
 }
 
 .weatherCard, .weatherInfoLink, .personalize-button {
