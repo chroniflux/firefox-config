@@ -18,7 +18,6 @@ user_pref("browser.download.manager.addToRecentDocs", false);
 user_pref("browser.download.open_pdf_attachments_inline", true);
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 user_pref("browser.formfill.enable", false);
-user_pref("browser.helperApps.deleteTempFileOnExit", true);
 user_pref("browser.menu.showViewImageInfo", true);
 user_pref("browser.ml.chat.enabled", false);
 user_pref("browser.ml.chat.menu", false);
@@ -38,7 +37,6 @@ user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
 user_pref("browser.privatebrowsing.resetPBM.enabled", true);
-user_pref("browser.privatebrowsing.vpnpromourl", "");
 user_pref("browser.profiles.enabled", true);
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
@@ -49,6 +47,7 @@ user_pref("browser.sessionhistory.max_total_viewers", 4);
 user_pref("browser.sessionstore.interval", 180000);
 user_pref("browser.sessionstore.max_tabs_undo", 10); // Default: 25
 user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("browser.startup.homepage_override.mstone", "ignore");
 user_pref("browser.tabs.allow_transparent_browser", true);
 user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.tabs.crashReporting.sendReport", false);
@@ -66,6 +65,8 @@ user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("datareporting.usage.uploadEnabled", false);
 user_pref("dom.ipc.processCount", 8);
+user_pref("dom.security.https_only_mode", true);
+user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
 user_pref("editor.truncate_user_pastes", false);
 user_pref("extensions.enabledScopes", 5);
 user_pref("extensions.getAddons.cache.enabled", false);
@@ -79,6 +80,7 @@ user_pref("geo.provider.network.url", "https://beacondb.net/v1/geolocate");
 user_pref("gfx.canvas.accelerated.cache-items", 32768);
 user_pref("gfx.canvas.accelerated.cache-size", 1024); // 2x for Retina
 user_pref("gfx.content.skia-font-cache-size", 40); // 2x for fonts
+user_pref("gfx.webrender.layer-compositor", true);
 user_pref("image.cache.size", 10485760);
 user_pref("image.mem.decode_bytes_at_a_time", 65536); // 2x Betterfox
 user_pref("layout.word_select.eat_space_to_next_word", false);
@@ -109,13 +111,12 @@ user_pref("pdfjs.enableScripting", false);
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);
 user_pref("permissions.manager.defaultsUrl", "");
+user_pref("privacy.antitracking.isolateContentScriptResources", true);
 user_pref("privacy.globalprivacycontrol.enabled", true);
 user_pref("privacy.history.custom", true);
-user_pref("privacy.trackingprotection.allow_list.baseline.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
 user_pref("security.OCSP.enabled", 1);
 user_pref("security.csp.reporting.enabled", false);
-user_pref("security.mixed_content.block_display_content", true);
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 user_pref("security.tls.enable_0rtt_data", false);
 user_pref("sidebar.animation.enabled", false); // Performance
