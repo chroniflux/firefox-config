@@ -142,6 +142,9 @@
   margin-top: 0;
 }
 &[splitview] {
+:root:not([inDOMFullscreen]) & > .split-view-panel:not(.deck-selected) {
+  overflow: unset !important;
+}
 .split-view-panel {
   margin: 0 !important;
 }
@@ -1300,18 +1303,19 @@ tab-group > .tabbrowser-tab {
 
 .tab-icon-overlay {
   scale: .7;
-  &:hover { scale: .8; }
+  &:hover { scale: .9; }
   &:is([soundplaying], [muted], [activemedia-blocked]) {
-  background-color: transparent !important;
+  background: light-dark(color-mix(in srgb, var(--button-bgcolor) 20%, #fff), color-mix(in srgb, var(--button-bgcolor) 80%, #555)) !important;
+  backdrop-filter: blur(30px);
   border: none !important;
   &:not([pinned]) {
   background-size: 16px !important;
 }
   &:hover {
-  background-color: var(--button-hover-bgcolor) !important;   
+  background: light-dark(color-mix(in srgb, var(--button-hover-bgcolor) 20%, #fff), color-mix(in srgb, var(--button-hover-bgcolor) 80%, #555)) !important;
 }
   &:active {
-  background-color: var(--button-active-bgcolor) !important;   
+  background: light-dark(color-mix(in srgb, var(--button-active-bgcolor) 20%, #fff), color-mix(in srgb, var(--button-active-bgcolor) 80%, #555)) !important;
 }
 }
   :is(
@@ -2868,6 +2872,9 @@ tab-group:not([collapsed]) > & {
 #tabbrowser-tabs {
 tab-group > .tabbrowser-tab {
   max-height: 42px;
+@media -moz-pref("sidebar.visibility", "expand-on-hover") {
+  transition: max-height .25s !important;
+}
 [collapsed] & {
 &:not([selected], [busy]) {
   display: block !important;
@@ -5256,8 +5263,16 @@ padding-inline-end: 46px !important;
 :root:not([inDOMFullscreen], [chromehidden~="toolbar"]) {
 #tabbrowser-tabpanels {
 &[splitview] {
-.browserStack {
+.browserStack, .browserContainer {
   border-radius: 0 !important;
+  box-shadow: 0 0 2px light-dark(#00000026, #00000040) !important;
+:has([sidebar-shown]) & {
+@media not -moz-pref("sidebar.verticalTabs") {
+.split-view-panel[column="0"] & {
+  border-start-start-radius: 12px !important;
+}  
+}  
+}
 }
 .split-view-panel[column="0"] {
   margin-inline-end: 8px !important;
@@ -5310,11 +5325,11 @@ padding-inline-end: 46px !important;
   border-start-start-radius: 12px !important;
 }
 
-#tabbrowser-tabbox browser {
+#tabbrowser-tabbox browser:not(.devtools-toolbox-bottom-iframe, .devtools-toolbox-side-iframe) {
   clip-path: inset(0 round 12px 0 0 0) !important;
   border-start-start-radius: 10px !important;
 .split-view-panel[column="1"] & {
-  clip-path: none !important;
+  clip-path: inset(0 round .1px) !important;
   border-start-start-radius: 0 !important;
 }
 }
