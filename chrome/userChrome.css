@@ -313,6 +313,14 @@ split-view-footer {
 }
 }
 }
+:has([sidebar-shown]) {
+@media (min-width: 610px) and (max-width: 846px) {
+.findbar-highlight, .findbar-match-diacritics,
+.findbar-entire-word, .findbar-case-sensitive {
+  display: none;
+}
+}
+}
 .titlebar-buttonbox-container {
   position: fixed !important;
   left: 7px;
@@ -1862,12 +1870,7 @@ tree {
 }
 
 :root#main-window {
-  min-width: 611px !important;
-@media not (-moz-platform: macos) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
-  min-width: 701px !important;
-}
-}
+  min-width: 721px !important;
 @media (-moz-platform: macos) {
   appearance: -moz-sidebar !important;
 }
@@ -1894,10 +1897,10 @@ tree {
 }
 }
 
-@media (max-width: 611px) {
+@media (max-width: 721px) {
 @media not -moz-pref("sidebar.verticalTabs") {
 #urlbar-container {
-  margin-left: 30px !important;
+  margin-left: 80px !important;
 }
 }
 
@@ -1907,25 +1910,6 @@ tree {
 
 .titlebar-buttonbox-container {
   visibility: visible;
-}
-}
-
-@media not (-moz-platform: macos) {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
-@media (max-width: 701px) {
-@media not -moz-pref("sidebar.verticalTabs") {
-#urlbar-container {
-  margin-left: 55px !important;
-@media (-moz-platform: linux) {
-  margin-left: 65px !important;
-}
-}
-}
-
-#TabsToolbar {
-  visibility: collapse;
-}
-}
 }
 }
 
@@ -2173,16 +2157,23 @@ findbar {
   position: absolute !important;
   top: 3px;
   right: -8px;
-  width: calc(100% - 15px) !important;
+  width: 100% !important;
   height: 90px !important;
   border: none !important;
   background: none !important;
   flex-direction: row-reverse;
   white-space: nowrap;
+  pointer-events: none;
   animation-name: slide-in;
   animation-duration: 350ms;
 &:is([hidden]) {
   animation-name: slide-out;
+}
+@media (min-width: 610px) and (max-width: 796px) {
+.findbar-highlight, .findbar-match-diacritics,
+.findbar-entire-word, .findbar-case-sensitive {
+  display: none;
+}
 }
 }
 
@@ -2197,6 +2188,7 @@ findbar::after {
   right: 18px;
   margin-top: 7px !important;
   background: none !important;
+  pointer-events: auto;
   z-index: 1;
 }
 
@@ -2218,6 +2210,7 @@ findbar::after {
 .findbar-container {
   height: 42px !important;
   margin-right: 25px;
+  pointer-events: auto;
   overflow-inline: visible !important;
   flex-direction: row-reverse;
   border-radius: var(--br2) !important;
@@ -2230,16 +2223,21 @@ findbar::after {
   margin-right: 30px;
 }
 
-.findbar-textbox, .findbar-textbox:-moz-window-inactive {
-  background: none !important;
-  width: 100px !important;
-  border: none !important;
-}
-
 .findbar-textbox {
+  width: 10em !important;
+  background: rgba(165, 165, 165, .1) !important;
   outline-style: solid !important;
   outline-color: transparent !important;
   outline-width: 5px !important;
+  border-radius: 6px !important;
+  padding-inline-start: 22px !important;
+  background-image: url(chrome://global/skin/icons/search-glass.svg) !important;
+  background-repeat: no-repeat !important;
+  background-size: 12px !important;
+  background-position: left 5px bottom 5px !important;
+  -moz-context-properties: fill, fill-opacity;
+  fill: currentColor;
+  fill-opacity: .65;
 }
 
 .findbar-textbox[focused],
@@ -2937,6 +2935,13 @@ tab-group > .tabbrowser-tab,
 #sidebar-main {
   min-width: 240px !important;
 }
+
+@media (min-width: 610px) and (max-width: 1036px) {
+.findbar-highlight, .findbar-match-diacritics,
+.findbar-entire-word, .findbar-case-sensitive {
+  display: none;
+}
+}
 }
 
 :has(#tabbrowser-tabs:not([expanded])) {
@@ -2970,6 +2975,13 @@ tab-group > .tabbrowser-tab,
 :has(#urlbar[usertyping]:not([persistsearchterms])[focused]) {
 #urlbar {
   left: 29vw !important;
+}
+}
+
+@media (min-width: 610px) and (max-width: 876px) {
+.findbar-highlight, .findbar-match-diacritics,
+.findbar-entire-word, .findbar-case-sensitive {
+  display: none;
 }
 }
 }
