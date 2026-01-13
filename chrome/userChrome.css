@@ -5515,9 +5515,6 @@ toolbarbutton.subviewbutton:not(#appMenu-zoomEnlarge-button2, #appMenu-zoomReduc
 .menu-icon[srcset^="moz-extension://"] {
   filter: grayscale(100%) contrast(200%) !important;
   scale: .75;
-@media not (-moz-platform: macos) {
-  margin-inline-start: -19px;
-}
 }
 
 #appMenu-zoom-controls::before,
@@ -5614,7 +5611,7 @@ toolbarbutton.subviewbutton:not(#appMenu-zoomEnlarge-button2, #appMenu-zoomReduc
 }
 
 @media not (-moz-platform: macos) {
-menupopup {
+menupopup[needsgutter] {
 > :is(menu, menuitem) > .menu-icon:not([srcset^="moz-extension://"]) {
   display: none !important;
 .bookmark-item & {
@@ -5635,7 +5632,7 @@ menupopup {
   -moz-context-properties: fill, fill-opacity;
   fill: currentColor;
   fill-opacity: var(--menu-arrow-opacity);
-  scale: .85;
+  scale: .75;
 }
 }
 > menuitem:is([checked="true"], [selected="true"])::before {
@@ -5689,7 +5686,6 @@ menupopup {
 #context-openlinkincurrent::before,
 #placesContext_open::before {
   content: url("chrome://global/skin/icons/defaultFavicon.svg") !important;
-  scale: .8;
 }
 
 #context-setDesktopBackground::before {
