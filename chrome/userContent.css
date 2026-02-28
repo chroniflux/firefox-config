@@ -278,7 +278,7 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  background-image: repeating-linear-gradient(-45deg, #2d2d2d 0 250px, #202020 0 500px) !important;
+  background-image: repeating-linear-gradient(-45deg, #68249a 0 250px, #202020 0 500px) !important;
 }
 
 .container {
@@ -644,7 +644,7 @@ body {
   background: none !important;
 }
 
-.modal, .confirmation-dialog {
+.modalOverlayOuter, .confirmation-dialog {
   border-radius: 6px !important;
   border: none !important;
   animation-name: panel-grow;
@@ -660,6 +660,13 @@ body {
 }
 }
 
+.modal {
+  border-radius: 6px !important;
+@media (-moz-mac-tahoe-theme) or (-moz-gtk-theme-family: adwaita) or (-moz-gtk-theme-family: yaru) {
+  border-radius: 12px !important;
+}
+}
+
 .modal, .tile, .context-menu-button.icon, .search-inner-wrapper {
   backdrop-filter: blur(30px) !important;
 @media (-moz-mac-tahoe-theme) {
@@ -672,7 +679,7 @@ body {
 }
 }
 
-.modal, .contentSearchSuggestionTable, .confirmation-dialog {
+.modal, .contentSearchSuggestionTable {
   box-shadow: var(--bs1) !important;
 }
 
@@ -799,21 +806,21 @@ body {
 
 @media (prefers-color-scheme: dark) {
 @media not (-moz-platform: linux) {
-.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu {
+.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list {
   box-shadow: var(--bs2) !important;
   outline: 1px solid rgba(235, 235, 235, .2) !important;
   outline-offset: -1.5px !important;
 }
 
 @media (-moz-platform: windows) {
-.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu {
+.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list {
   outline: none !important;
 }
 }
 }
 
 @media (-moz-platform: linux) {
-.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu {
+.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list {
   border: 1px solid rgba(255, 255, 255, .06) !important;
 }
 }

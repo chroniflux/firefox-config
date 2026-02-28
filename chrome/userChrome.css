@@ -290,25 +290,6 @@ split-view-footer {
 }
 }
 
-:root[privatebrowsingmode] {
-#customization-container,
-#browser {
-  background: transparent !important;
-@media (-moz-platform: linux) {
-@media -moz-pref("gwfox.bms") {
-  background: rgba(40, 40, 44, .76) !important;
-}
-@media not -moz-pref("gwfox.bms") {
-  background: #28282c !important;
-}
-}
-}
-
-#tabbrowser-tabbox browser:not(.devtools-toolbox-bottom-iframe, .devtools-toolbox-side-iframe) {
-  background-color: #191919 !important;
-}
-}
-
 @media not -moz-pref("sidebar.verticalTabs") {
 :has(#sidebar-main[hidden]) {
 #tabbrowser-tabpanels[splitview] {
