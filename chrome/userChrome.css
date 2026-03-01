@@ -66,6 +66,7 @@
   --input-border-color: transparent !important;
   --tabstrip-min-height: unset !important;
   --tab-icon-overlay-fill: light-dark(rgba(0, 0, 0, .8), rgba(225, 225, 225, .8)) !important;
+  --toolbar-bgcolor: var(--toolbox-bgcolor) !important;
   --toolbarbutton-hover-background: color-mix(in srgb, currentColor 10%, transparent) !important;
   --toolbarbutton-active-background: color-mix(in srgb, currentColor 15%, transparent) !important;
   :not(:-moz-window-inactive) {::selection {background:color-mix(in srgb, var(--bg0), transparent 75%) !important;}}
@@ -2021,7 +2022,7 @@ richlistbox {
 
 #customization-panelWrapper > .panel-arrowcontent,
 #customization-container {
-@media not (-moz-platform: linux) {
+@media (not (-moz-platform: linux)) and (not -moz-pref("gwfox.atbc")) {
   background-color: transparent !important;
 }
 }
@@ -3378,12 +3379,13 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
   transform: rotateX(90deg);
   transform-origin: top;
-  transition: transform 105ms linear 500ms !important;
+  transition: 105ms !important;
+  transition-delay: 500ms !important;
   z-index: 11;
 }
 
 #navigator-toolbox:hover > #PersonalToolbar {
-  transition-delay: 100ms;
+  transition: 205ms !important;
   transform: rotateX(0deg);
 }
 
@@ -5269,7 +5271,7 @@ padding-inline-end: 46px !important;
 &[splitview] {
 .browserStack, .browserContainer {
   border-radius: 0 !important;
-  box-shadow: 0 0 2px light-dark(#00000026, #00000040) !important;
+  box-shadow: 0 0 2px light-dark(#00000026, #99999940) !important;
 :has([sidebar-shown]) & {
 @media not -moz-pref("sidebar.verticalTabs") {
 .split-view-panel[column="0"] & {
@@ -5299,12 +5301,24 @@ padding-inline-end: 46px !important;
   clip-path: inset(0 round .1px) !important;
 }
 
+.browserContainer {
+@media -moz-pref("sidebar.revamp") and -moz-pref("sidebar.revamp.round-content-area") {
+#tabbrowser-tabbox[sidebar-shown] & {
+  border-start-start-radius: 12px !important;
+  box-shadow: 0 0 2px light-dark(#00000026, #99999940) !important;
+@media -moz-pref("sidebar.verticalTabs") {
+  border-start-start-radius: 0 !important;
+}
+}
+}
+}
+
 .browserStack,
 .devtools-toolbox-side-iframe,
 .devtools-toolbox-bottom-iframe {
   border-radius: 0 !important;
   margin: 0 !important;
-  box-shadow: 0 0 2px light-dark(#00000026, #00000040) !important;
+  box-shadow: 0 0 2px light-dark(#00000026, #99999940) !important;
 }
 
 .devtools-toolbox-bottom-iframe {

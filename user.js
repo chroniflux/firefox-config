@@ -6,11 +6,10 @@ user_pref("apz.overscroll.enabled", true);
 user_pref("breakpad.reportURL", "");
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.aboutwelcome.enabled", false);
+user_pref("browser.ai.control.default", "blocked");
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
 user_pref("browser.cache.disk.capacity", 512000); // 512MB
 user_pref("browser.cache.disk.enable", true);
-user_pref("browser.cache.memory.capacity", 131072);
-user_pref("browser.cache.memory.max_entry_size", 20480);
 user_pref("browser.compactmode.show", true);
 user_pref("browser.contentblocking.category", "strict");
 user_pref("browser.discovery.enabled", false);
@@ -43,7 +42,6 @@ user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 user_pref("browser.search.suggest.enabled", true);
 user_pref("browser.search.update", false);
 user_pref("browser.sessionhistory.max_entries", 25); // Default: 50
-user_pref("browser.sessionhistory.max_total_viewers", 4);
 user_pref("browser.sessionstore.interval", 180000);
 user_pref("browser.sessionstore.max_tabs_undo", 10); // Default: 25
 user_pref("browser.shell.checkDefaultBrowser", false);
@@ -77,36 +75,23 @@ user_pref("full-screen-api.transition-duration.enter", "0 0");
 user_pref("full-screen-api.transition-duration.leave", "0 0");
 user_pref("full-screen-api.warning.timeout", 0);
 user_pref("geo.provider.network.url", "https://beacondb.net/v1/geolocate");
-user_pref("gfx.canvas.accelerated.cache-items", 32768);
 user_pref("gfx.canvas.accelerated.cache-size", 1024); // 2x for Retina
 user_pref("gfx.content.skia-font-cache-size", 40); // 2x for fonts
 user_pref("gfx.webrender.layer-compositor", true);
-user_pref("image.cache.size", 10485760);
 user_pref("image.mem.decode_bytes_at_a_time", 65536); // 2x Betterfox
 user_pref("layout.word_select.eat_space_to_next_word", false);
-user_pref("media.cache_readahead_limit", 600);
-user_pref("media.cache_resume_threshold", 300);
 user_pref("media.hardware-video-decoding.force-enabled", true);
 user_pref("media.memory_cache_max_size", 131072); // 2x for 4K video
-user_pref("media.memory_caches_combined_limit_kb", 1048576);
 user_pref("network.IDN_show_punycode", true);
 user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("network.dns.disablePrefetch", false);
 user_pref("network.dns.disablePrefetchFromHTTPS", false);
-user_pref("network.dnsCacheEntries", 10000);
-user_pref("network.dnsCacheExpiration", 3600);
-user_pref("network.http.max-connections", 1800);
-user_pref("network.http.max-persistent-connections-per-server", 10);
-user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
-user_pref("network.http.pacing.requests.enabled", false);
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
-user_pref("network.http.request.max-start-delay", 5);
 user_pref("network.http.speculative-parallel-limit", 6);
 user_pref("network.predictor.enable-hover-on-ssl", true);
 user_pref("network.predictor.enable-prefetch", true);
 user_pref("network.predictor.enabled", true);
 user_pref("network.prefetch-next", true);
-user_pref("network.ssl_tokens_cache_capacity", 10240);
 user_pref("pdfjs.enableScripting", false);
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);
@@ -136,6 +121,5 @@ user_pref("toolkit.telemetry.server", "data:,");
 user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.updatePing.enabled", false);
-user_pref("webgl.max-size", 16384);
 user_pref("widget.macos.titlebar-blend-mode.behind-window", true);
 user_pref("widget.transparent-windows", true);

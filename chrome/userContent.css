@@ -45,6 +45,7 @@
   --newtab-primary-action-background: var(--color-accent-primary) !important;
   --button-text-color-primary: #fff !important;
   --border-color: rgba(105, 105, 105, .2) !important;
+  --newtab-background-color: var(--toolbox-bgcolor) !important;
   @media (-moz-mac-tahoe-theme) {
   --bs1: 0 5px 15px rgba(0, 0, 0, .2), inset 0 0 0 .5px rgba(0, 0, 0, .34), 0 0 0 .5px rgba(0, 0, 0, .12);
   --bg4: light-dark(rgba(255, 255, 255, .55), rgba(25, 25, 25, .55));
@@ -679,7 +680,7 @@ body {
 }
 }
 
-.modal, .contentSearchSuggestionTable {
+.modal, .contentSearchSuggestionTable, .confirmation-dialog {
   box-shadow: var(--bs1) !important;
 }
 
@@ -806,21 +807,21 @@ body {
 
 @media (prefers-color-scheme: dark) {
 @media not (-moz-platform: linux) {
-.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list {
+.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list, .confirmation-dialog {
   box-shadow: var(--bs2) !important;
   outline: 1px solid rgba(235, 235, 235, .2) !important;
   outline-offset: -1.5px !important;
 }
 
 @media (-moz-platform: windows) {
-.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list {
+.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list, .confirmation-dialog {
   outline: none !important;
 }
 }
 }
 
 @media (-moz-platform: linux) {
-.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list {
+.modal, .contentSearchSuggestionTable, .customize-menu, .context-menu, .weatherButtonContextMenuWrapper > panel-list, .confirmation-dialog {
   border: 1px solid rgba(255, 255, 255, .06) !important;
 }
 }
