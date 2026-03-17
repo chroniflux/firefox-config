@@ -166,9 +166,9 @@ search-textbox {
 
 input[type="checkbox"]:not(.reveal-password-checkbox) {
   appearance: none !important;
-  background-color: transparent !important;
-  border-radius: 2px !important;
-  border: 2px solid rgba(165, 165, 165, .8) !important;
+  background-color: light-dark(rgba(70, 70, 70, .12), rgba(170, 170, 170, .15)) !important;
+  border-radius: 4px !important;
+  border: none !important;
   &:checked {
   background-color: light-dark(var(--bg0), color-mix(in srgb, var(--bg0) 90%, #000)) !important;
   background-image: url("chrome://devtools/skin/images/check.svg") !important;
@@ -186,9 +186,9 @@ input[type="checkbox"]:not(.reveal-password-checkbox) {
 
 input[type="radio"]:not(.wallpaper-input, [name="theme"], [name="avatar"]) {
   appearance: none !important;
-  background-color: transparent !important;
+  background-color: light-dark(rgba(70, 70, 70, .12), rgba(170, 170, 170, .15)) !important;
   border-radius: 50% !important;
-  border: 2px solid rgba(165, 165, 165, .8) !important;
+  border: none !important;
   &:checked {
   background-color: light-dark(var(--bg0), color-mix(in srgb, var(--bg0) 90%, #000)) !important;
   background-image: url("chrome://devtools/skin/images/linear-easing-swatch.svg") !important;
@@ -205,9 +205,9 @@ input[type="radio"]:not(.wallpaper-input, [name="theme"], [name="avatar"]) {
 
 .checkbox-check {
   appearance: none !important;
-  background-color: transparent !important;
-  border-radius: 2px !important;
-  border: 2px solid rgba(165, 165, 165, .8) !important;
+  background-color: light-dark(rgba(70, 70, 70, .12), rgba(170, 170, 170, .15)) !important;
+  border-radius: 4px !important;
+  border: none !important;
   &[checked] {
   background-color: light-dark(var(--bg0), color-mix(in srgb, var(--bg0) 90%, #000)) !important;
   background-image: url("chrome://devtools/skin/images/check.svg") !important;
@@ -225,9 +225,9 @@ input[type="radio"]:not(.wallpaper-input, [name="theme"], [name="avatar"]) {
 
 .radio-check {
   appearance: none !important;
-  background-color: transparent !important;
+  background-color: light-dark(rgba(70, 70, 70, .12), rgba(170, 170, 170, .15)) !important;
   border-radius: 50% !important;
-  border: 2px solid rgba(165, 165, 165, .8) !important;
+  border: none !important;
   &[selected] {
   background-color: light-dark(var(--bg0), color-mix(in srgb, var(--bg0) 90%, #000)) !important;
   background-image: url("chrome://devtools/skin/images/linear-easing-swatch.svg") !important;
