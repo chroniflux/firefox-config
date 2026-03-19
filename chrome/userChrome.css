@@ -181,7 +181,7 @@ split-view-footer {
 }
 
 .devtools-side-splitter {
-  display: none;
+  background-color: transparent !important;
 }
 
 #tabbrowser-tabbox {
@@ -1279,6 +1279,10 @@ tab-group > .tabbrowser-tab {
   :root:not([uidensity=compact]) #tabbrowser-tabs:not([secondarytext-unsupported]) .tabbrowser-tab:not(:hover) &[indicator-replaces-favicon] {
   opacity: 1 !important;
 }
+}
+
+.tab-audio-button {
+  --button-border-radius: calc(var(--tab-border-radius) - 3px) !important;
 }
 
 .tab-secondary-label, .tab-note-icon, .tab-note-icon-overlay {
@@ -2407,9 +2411,6 @@ body {
 :has(#tabbrowser-tabs[expanded]) {
 #tabbrowser-tabbox {
   clip-path: inset(-8px 0 0 190px);
-@media (-moz-platform: linux) {
-  clip-path: inset(-8px 0 0 184px);
-}
 @media -moz-pref("gwfox.sidebar", 1) {
   clip-path: inset(-8px 0 0 140px);
 }
@@ -2448,6 +2449,15 @@ body {
 &[sidebar-panel-open][sidebar-launcher-hovered][sidebar-launcher-expanded],
 &[sidebar-ongoing-animations][sidebar-panel-open] {
   margin-inline-start: 240px !important;
+@media -moz-pref("gwfox.sidebar", 1) {
+  margin-inline-start: 190px !important;
+}
+@media -moz-pref("gwfox.sidebar", 2) {
+  margin-inline-start: 240px !important;
+}
+@media -moz-pref("gwfox.sidebar", 3) {
+  margin-inline-start: 270px !important;
+}
 }
 }
 }
@@ -2769,6 +2779,10 @@ img:is([src="chrome://browser/content/genai/assets/brands/claude.svg"], [src="ch
 }
 }
 
+.wrapper {
+  width: 100% !important;
+}
+
 .tools-and-extensions {
   margin-bottom: 4px !important;
   visibility: var(--dp);
@@ -2872,6 +2886,9 @@ tab-group > tab-split-view-wrapper & {
   background-position: left 9px bottom 11px;
   -moz-context-properties: fill;
   fill: currentColor;
+@media (-moz-platform: linux) {
+  margin-right: 12px !important;
+}
 
 tab-group[collapsed] > .tab-group-label-container & {
   background-image: url("chrome://global/skin/icons/folder.svg");
@@ -3109,18 +3126,6 @@ tab-split-view-wrapper {
 :has(#tabbrowser-tabs[expanded]) {
 #tabbrowser-tabbox {
   clip-path: inset(-50px 0 0 158px);
-@media (-moz-platform: linux) {
-  margin-left: 79px !important;
-@media -moz-pref("gwfox.sidebar", 1) {
-  margin-left: 29px !important;
-}
-@media -moz-pref("gwfox.sidebar", 2) {
-  margin-left: 79px !important;
-}
-@media -moz-pref("gwfox.sidebar", 3) {
-  margin-left: 109px !important;
-}
-}
 @media -moz-pref("gwfox.sidebar", 1) {
   clip-path: inset(-50px 0 0 108px);
 }
@@ -3169,7 +3174,7 @@ tab-split-view-wrapper {
 
 .tab-audio-button {
   order: 10;
-  margin-right: -5px !important;
+  margin-inline-end: -5px !important;
 }
 
 .tabbrowser-tab:not([pinned]):is([soundplaying], [muted], [activemedia-blocked]) .tab-label-container {
@@ -3222,6 +3227,9 @@ tab-split-view-wrapper {
   margin-top: -28px;
   transition: margin .25s;
   transition-delay: .5s;
+@media (-moz-platform: linux) {
+  margin-top: -34px;
+}
 :has(#navigator-toolbox:hover, #sidebar-box:not([hidden]), #PersonalToolbar .bookmark-item[open]) & {
   margin-top: 0;
   transition: margin .25s;
@@ -3481,7 +3489,7 @@ tab-split-view-wrapper {
 
 &:not([customizing]) #nav-bar-customization-target > #sidebar-button:first-child {
   margin-inline-end: 20px !important;
-@media (-moz-mac-tahoe-theme) {
+@media (-moz-mac-tahoe-theme) or (-moz-platform: linux) {
   margin-inline-end: 14px !important;
 }
 @media (not (-moz-platform: macos)) and -moz-pref("gwfox.plus_sc") {
@@ -3492,13 +3500,13 @@ tab-split-view-wrapper {
 @media (not (-moz-platform: macos)) and -moz-pref("gwfox.plus_sc") {
   margin-inline-end: 35px !important;
 }
-@media (-moz-mac-tahoe-theme) {
+@media (-moz-mac-tahoe-theme) or (-moz-platform: linux) {
   margin-inline-end: 0 !important;
 }
 }
 @media -moz-pref("gwfox.sidebar", 2) {
   margin-inline-end: 20px !important;
-@media (-moz-mac-tahoe-theme) {
+@media (-moz-mac-tahoe-theme) or (-moz-platform: linux) {
   margin-inline-end: 14px !important;
 }
 @media (not (-moz-platform: macos)) and -moz-pref("gwfox.plus_sc") {
@@ -3507,7 +3515,7 @@ tab-split-view-wrapper {
 }
 @media -moz-pref("gwfox.sidebar", 3) {
   margin-inline-end: 50px !important;
-@media (-moz-mac-tahoe-theme) {
+@media (-moz-mac-tahoe-theme) or (-moz-platform: linux) {
   margin-inline-end: 44px !important;
 }
 @media (not (-moz-platform: macos)) and -moz-pref("gwfox.plus_sc") {
@@ -3596,17 +3604,6 @@ tab-split-view-wrapper {
   background-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-circle-12.svg");
 }
 }
-}
-}
-
-@media (-moz-platform: linux) {
-#tabbrowser-tabbox {
-  margin-left: -1px !important;
-}
-
-#tabbrowser-tabs {
-  margin-left: -3px !important;
-  margin-right: -3px !important;
 }
 }
 }
@@ -3728,19 +3725,6 @@ tab-split-view-wrapper {
   margin-top: -47px;
 @media (-moz-platform: windows) {
   margin-top: -46px;
-}
-}
-}
-}
-
-@media (-moz-platform: linux) {
-#sidebar-box {
-  margin-left: 0 !important;
-}
-:has([sidebar-shown]) {
-:has(#sidebar-box[hidden]) {
-#tabbrowser-tabbox {
-  margin-left: -7px !important;
 }
 }
 }
@@ -4000,15 +3984,6 @@ tab-split-view-wrapper {
 }
 }
 
-@media (-moz-platform: linux) {
-#tabbrowser-tabbox {
-  margin-left: 6px !important;
-@media -moz-pref("gwfox.noborder") {
-  margin-left: -2px !important;
-}
-}
-}
-
 #nav-bar {
 &:-moz-window-inactive {
   z-index: 10;
@@ -4138,8 +4113,14 @@ tab-split-view-wrapper & {
 &:last-child {
 @media not -moz-pref("gwfox.sidebar", 1) {
   margin-inline-start: -9px !important;
+@media (-moz-platform: linux) {
+  margin-inline-end: 2px !important;
 }
 }
+}
+}
+@media (-moz-platform: linux) {
+  margin-inline-end: 12px !important;
 }
 }
 
@@ -4161,7 +4142,8 @@ tab-split-view-wrapper & {
   display: none !important;
 }
 
-.tab-audio-button:is([soundplaying], [muted], [activemedia-blocked]) {
+.tab-audio-button {
+&:is([soundplaying], [muted], [activemedia-blocked]) {
   display: block !important;
   background-repeat: no-repeat;
   background-position: center;
@@ -4176,6 +4158,10 @@ tab-split-view-wrapper & {
 }
 &[activemedia-blocked] {
   background-image: url("chrome://browser/skin/tabbrowser/tab-audio-blocked-circle-12.svg");
+}
+}
+@media not -moz-pref("gwfox.plus_sc") {
+  margin-inline-end: -13px !important;
 }
 }
 
@@ -4795,7 +4781,7 @@ tab-split-view-wrapper & {
   left: 15px;
   top: 17.5px;
 @media (-moz-platform: linux) {
-position: fixed !important;
+  position: fixed !important;
 }
 }
 
@@ -5066,15 +5052,16 @@ browser:not(.devtools-toolbox-bottom-iframe, .devtools-toolbox-side-iframe) {
 }
 }
 
-.devtools-toolbox-side-iframe,
-.devtools-toolbox-bottom-iframe {
+:has(.devtools-toolbox-bottom-iframe:not([hidden])) {
+browser:not(.devtools-toolbox-bottom-iframe, .devtools-toolbox-side-iframe) {
+  clip-path: inset(0 round .1px) !important;
+}  
+}
+
+.devtools-toolbox-side-iframe {
   border-radius: 0 !important;
   margin: 0 !important;
   box-shadow: 0 0 2px light-dark(#00000026, #99999940) !important;
-}
-
-.devtools-toolbox-bottom-iframe {
-  margin-top: 8px !important;
 }
 
 .devtools-toolbox-side-iframe {
