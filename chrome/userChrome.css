@@ -1594,9 +1594,6 @@ menupopup, panel[type="arrow"] {
 @media not (-moz-platform: linux) {
   appearance: menupopup !important;
 }
-@media (-moz-platform: macos) {
-  --panel-shadow-margin: 0 !important;
-}
 }
 
 panel[type="arrow"] {
@@ -1604,7 +1601,7 @@ panel[type="arrow"] {
   --arrowpanel-background: transparent !important;
   --arrowpanel-border-radius: 0 !important;
 @media (-moz-platform: macos) {
-  --panel-shadow-margin: 0 !important;
+  --panel-shadow-margin: .1px !important;
 }
 @media (-moz-mac-tahoe-theme) {
   --panel-background: none !important;
@@ -1812,7 +1809,10 @@ window[role="dialog"] {
 
 #unified-extensions-view {
   --uei-icon-size: 16px !important;
-  width: 22em !important;
+  width: 20em !important;
+@media (-moz-platform: macos) {
+  padding-inline-start: 5px !important;
+}
 }
 
 /* misc */
@@ -2502,7 +2502,6 @@ menupopup, panel[type="arrow"] {
 }
 
 @media (prefers-color-scheme: dark) {
-&:not(:-moz-window-inactive) {::selection { background: #416189 }}
 * {
   --organizer-pane-background: #2d2d2d !important;
   --organizer-toolbar-background: #333 !important;
@@ -2601,20 +2600,21 @@ menuitem[type="checkbox"][checked] .menu-icon {
 
 menuitem[type="radio"] .menu-icon {
   border-radius: 50%;
-  border: 2px solid rgba(165, 165, 165, .8);
+  border: 1px solid transparent;
+  background-color: var(--button-bgcolor);
 }
 
 menuitem[type="radio"][checked] .menu-icon {
-  background-color: light-dark(#007aff, #1280fd);
+  background-color: light-dark(var(--bg0), color-mix(in srgb, var(--bg0) 90%, #000));
   border: none;
 }
 
 menuitem[type="radio"][checked]:hover .menu-icon {
-  background-color: light-dark(#0075dd, #006bdc);
+  background-color: light-dark(color-mix(in srgb, var(--bg0) 90%, #fff), color-mix(in srgb, var(--bg0) 80%, #fff));
 }
 
 menuitem[type="radio"][checked]:active .menu-icon {
-  background-color: light-dark(#005ebb, #0055bc);
+  background-color: light-dark(color-mix(in srgb, var(--bg0) 90%, #000), color-mix(in srgb, var(--bg0) 80%, #000));
 }
 
 menuitem[type="radio"][disabled] .menu-icon {
@@ -2937,6 +2937,11 @@ tab-group > .tabbrowser-tab,
 &[movingtab][movingtab-addToGroup]:not([movingtab-group],[movingtab-ungroup]) .tabbrowser-tab:is(:active,[multiselected]) {
   margin-inline-start: 0 !important;
 }
+@media (-moz-platform: linux) {
+&[expanded] {
+  margin-inline: -3px !important;
+}
+}
 }
 
 #tabs-newtab-button,
@@ -3227,8 +3232,8 @@ tab-split-view-wrapper {
   margin-top: -28px;
   transition: margin .25s;
   transition-delay: .5s;
-@media (-moz-platform: linux) {
-  margin-top: -34px;
+@media (-moz-gtk-theme-family: adwaita) or (-moz-gtk-theme-family: yaru) {
+  margin-top: -32px;
 }
 :has(#navigator-toolbox:hover, #sidebar-box:not([hidden]), #PersonalToolbar .bookmark-item[open]) & {
   margin-top: 0;
@@ -3497,11 +3502,11 @@ tab-split-view-wrapper {
 }
 @media -moz-pref("gwfox.sidebar", 1) {
   margin-inline-end: 5px !important;
-@media (not (-moz-platform: macos)) and -moz-pref("gwfox.plus_sc") {
-  margin-inline-end: 35px !important;
-}
 @media (-moz-mac-tahoe-theme) or (-moz-platform: linux) {
   margin-inline-end: 0 !important;
+}
+@media (not (-moz-platform: macos)) and -moz-pref("gwfox.plus_sc") {
+  margin-inline-end: 35px !important;
 }
 }
 @media -moz-pref("gwfox.sidebar", 2) {
