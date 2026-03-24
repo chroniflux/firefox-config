@@ -336,6 +336,10 @@ split-view-footer {
 }
 }
 
+#PersonalToolbar {
+height: 28px !important;
+}
+
 .webextension-browser-action,
 #nav-bar-customization-target > toolbarbutton:nth-last-child(3) {
   margin-right: 4px !important;
@@ -479,21 +483,6 @@ split-view-footer {
 }
 }
 }
-}
-}
-}
-
-:has([splitview], .devtools-toolbox-side-iframe:not([hidden])) {
-#PersonalToolbar {
-  opacity: 0;
-  transition: .25s !important;
-  transition-delay: .5s !important;
-}
-:has(#navigator-toolbox:hover, #PersonalToolbar .bookmark-item[open]) {
-#PersonalToolbar {
-  opacity: 1;
-  transition: .25s !important;
-  transition-delay: 0 !important;
 }
 }
 }
@@ -1452,19 +1441,19 @@ tab-split-view-wrapper & {
 }
 }
 
-tab-split-view-wrapper {
-.tabbrowser-tab {
-  max-height: 30px !important;
-  min-height: 30px !important;
-}
-}
-
 .tab-icon-image:not([src], [pinned], [crashed], [sharing], [pictureinpicture], [busy]) {
    display: block !important;
 }
 
 .tab-content[pinned] .tab-label-container {
   margin: 0 !important;
+}
+
+.tab-content {
+  height: 38px !important;
+tab-split-view-wrapper & {
+  height: 30px !important;
+}
 }
 
 .tab-background {
@@ -2419,8 +2408,11 @@ body {
   background-color: transparent !important;
 }
 
-#sidebar-box:-moz-window-inactive {
+#sidebar-box {
+  margin-bottom: 2.5px !important;
+&:-moz-window-inactive {
   opacity: .5 !important;
+}
 }
 
 .sidebar-splitter {
@@ -3277,6 +3269,23 @@ tab-split-view-wrapper {
 }
 }
 
+@media not -moz-pref("sidebar.verticalTabs") {
+:has([splitview], .devtools-toolbox-side-iframe:not([hidden])) {
+#PersonalToolbar {
+  opacity: 0;
+  transition: .25s !important;
+  transition-delay: .5s !important;
+}
+:has(#navigator-toolbox:hover, #PersonalToolbar .bookmark-item[open]) {
+#PersonalToolbar {
+  opacity: 1;
+  transition: .25s !important;
+  transition-delay: 0 !important;
+}
+}
+}
+}
+
 @media -moz-pref("sidebar.verticalTabs") {
 .titlebar-buttonbox-container {
   position: fixed !important;
@@ -3312,10 +3321,6 @@ tab-split-view-wrapper {
 
 .wrapper {
   padding-top: 34px !important;
-}
-
-#sidebar-box {
-  margin-bottom: 2.5px !important;
 }
 
 .tools-and-extensions > moz-button {
@@ -3537,7 +3542,7 @@ tab-split-view-wrapper {
 }
 
 .tabbrowser-tab:not([pinned]) .tab-audio-button:is([soundplaying], [muted], [activemedia-blocked]) {
-  display: block !important;
+  display: flex !important;
   background-repeat: no-repeat;
   background-position: center;
   -moz-context-properties: fill, fill-opacity;
@@ -3576,7 +3581,7 @@ tab-split-view-wrapper {
 }
 
 .tabbrowser-tab[pinned] .tab-audio-button:is([soundplaying], [muted], [activemedia-blocked]) {
-  display: block !important;
+  display: flex !important;
   background-repeat: no-repeat;
   background-position: center;
   -moz-context-properties: fill, fill-opacity;
@@ -4001,6 +4006,9 @@ tab-split-view-wrapper {
 #tabbrowser-tabs {
   margin-top: 50px !important;
   margin-bottom: 45px !important;
+@media (-moz-platform: linux) {
+  margin-inline: -3px !important;
+}
 &:has([pinned]) {
   margin-top: 48px !important;
 }
@@ -4117,7 +4125,7 @@ tab-split-view-wrapper & {
 
 .tab-audio-button {
 &:is([soundplaying], [muted], [activemedia-blocked]) {
-  display: block !important;
+  display: flex !important;
   background-repeat: no-repeat;
   background-position: center;
   -moz-context-properties: fill, fill-opacity;
@@ -4135,6 +4143,12 @@ tab-split-view-wrapper & {
 }
 @media not -moz-pref("gwfox.plus_sc") {
   margin-inline-end: -13px !important;
+@media (-moz-platform: linux) {
+  margin-inline-end: -16px !important;
+tab-split-view-wrapper & {
+  margin-inline-end: -8px !important;
+}
+}
 }
 }
 
@@ -4159,14 +4173,26 @@ tab-split-view-wrapper & {
 }
 @media -moz-pref("gwfox.plus_sc") {
   margin-left: 192px !important;
+@media (-moz-platform: linux) {
+  margin-left: 187px !important;
+}
 @media -moz-pref("gwfox.sidebar", 1) {
   margin-left: 142px !important;
+@media (-moz-platform: linux) {
+  margin-left: 137px !important;
+}
 }
 @media -moz-pref("gwfox.sidebar", 2) {
   margin-left: 192px !important;
+@media (-moz-platform: linux) {
+  margin-left: 187px !important;
+}
 }
 @media -moz-pref("gwfox.sidebar", 3) {
   margin-left: 222px !important;
+@media (-moz-platform: linux) {
+  margin-left: 217px !important;
+}
 }
 tab-split-view-wrapper & {
   margin-left: 100% !important;   
@@ -4701,13 +4727,19 @@ tab-split-view-wrapper & {
   margin-top: -47px !important;
 }
 
-:has(#sidebar-box:not([hidden]), :is(#vertical-spacer, #PersonalToolbar, #alltabs-button, #PanelUI-menu-button, #nav-bar-overflow-button, #unified-extensions-button, #downloads-button, .webextension-browser-action):hover, :is(#alltabs-button, #PanelUI-menu-button, #nav-bar-overflow-button, #unified-extensions-button, #downloads-button, .webextension-browser-action, #PersonalToolbar .bookmark-item, #PersonalToolbar #PlacesChevron)[open]) & {
+:has(:is(#vertical-spacer, #PersonalToolbar, .toolbarbutton-1:not(#back-button, #forward-button, #stop-button, #reload-button, #sidebar-button, #tabs-newtab-button, #vertical-tabs-newtab-button)):hover, :is(.toolbarbutton-1:not(#back-button, #forward-button, #stop-button, #reload-button, #sidebar-button, #tabs-newtab-button, #vertical-tabs-newtab-button), #PersonalToolbar .bookmark-item, #PersonalToolbar #PlacesChevron)[open]) & {
   margin-top: 0 !important;
 .browserStack {
   margin-top: -39px;
 @media -moz-pref("gwfox.noborder") {
   margin-top: -47px;
 }
+}
+}
+:has(#sidebar-box:not([hidden])) & {
+  margin-top: 0 !important;
+.browserStack {
+  margin-top: 0 !important;
 }
 }
 @media not -moz-pref("sidebar.visibility", "hide-sidebar") {
@@ -4730,6 +4762,7 @@ tab-split-view-wrapper & {
 }
 }
 }
+@media -moz-pref("gwfox.plus_sc") {
 :has(.titlebar-buttonbox:hover)&:has([sidebar-shown]) #tabbrowser-tabbox {
   margin-top: 0 !important;
 .browserStack {
@@ -4740,21 +4773,22 @@ tab-split-view-wrapper & {
 }
 }
 }
+}
 @media not -moz-pref("sidebar.verticalTabs") {
 :has(#PersonalToolbar:not([collapsed])) {
 #tabbrowser-tabbox {
   margin-top: -28px !important;
-@media (-moz-gtk-theme-family: adwaita) or (-moz-gtk-theme-family: yaru) {
-  margin-top: -32px !important;
 }
-}
-:has(#sidebar-box:not([hidden]), #PersonalToolbar:hover, #PersonalToolbar .bookmark-item[open], #TabsToolbar:hover)&:not(:has(:is(.tabbrowser-tab, #alltabs-button, #new-tab-button, #tabs-newtab-button, .tab-group-label):hover)) #tabbrowser-tabbox {
+:has(#PersonalToolbar:hover, #PersonalToolbar .bookmark-item[open], #PersonalToolbar #PlacesChevron[open], #TabsToolbar:hover)&:not(:has(:is(.tabbrowser-tab, #alltabs-button, #new-tab-button, #tabs-newtab-button, .tab-group-label):hover)) #tabbrowser-tabbox {
   margin-top: 0 !important;
 .browserStack {
   margin-top: -28px;
-@media (-moz-gtk-theme-family: adwaita) or (-moz-gtk-theme-family: yaru) {
-  margin-top: -32px;
 }
+}
+:has(#sidebar-box:not([hidden])) #tabbrowser-tabbox {
+  margin-top: 0 !important;
+.browserStack {
+  margin-top: 0 !important;
 }
 }
 #TabsToolbar {
@@ -4991,13 +5025,6 @@ tab-split-view-wrapper & {
   position: fixed !important;
   top: 2px;
   left: 18px;
-}
-}
-
-:has(#sidebar-box:not([hidden])),
-:has(#sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden])) {
-#nav-bar {
-  padding-left: 0 !important;
 }
 }
 }
